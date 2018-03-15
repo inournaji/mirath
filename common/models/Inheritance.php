@@ -63,7 +63,6 @@ class Inheritance extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-
             'id' => Yii::t('app', 'ID'),
             'gender' => Yii::t('app', 'Gender'),
             'husband' => Yii::t('app', 'Husband'),
