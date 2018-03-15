@@ -52,6 +52,7 @@ class Inheritance extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+
             [['gender', 'husband', 'wives', 'sons', 'daughters', 'grandsons', 'granddaughters', 'father', 'mother', 'grandfather', 'paternal_grandmother', 'maternal_grandmother', 'full_brothers', 'full_sisters', 'paternal_brothers', 'paternal_sisters', 'maternal_brothers', 'maternal_sisters', 'full_nephews', 'paternal_nephews', 'fullpaternal_uncles', 'paternal_paternal_uncles', 'full_cousins', 'paternal_cousins'], 'integer'],
         ];
     }
@@ -62,6 +63,7 @@ class Inheritance extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
+
             'id' => Yii::t('app', 'ID'),
             'gender' => Yii::t('app', 'Gender'),
             'husband' => Yii::t('app', 'Husband'),
