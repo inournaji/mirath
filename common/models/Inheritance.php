@@ -57,6 +57,7 @@ class Inheritance extends \yii\db\ActiveRecord
         ];
     }
 
+
     /**
      * {@inheritdoc}
      */
