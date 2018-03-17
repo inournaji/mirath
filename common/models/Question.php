@@ -14,7 +14,11 @@ use Yii;
  * @property string $desc_en
  * @property int $pp
  * @property int $type_id
+ * @property string $symbol
+ * @property int $group_id
  *
+ * @property Choice[] $choices
+ * @property Questiongroup $group
  * @property Type $type
  * @property Question $parent
  */
@@ -38,9 +42,12 @@ class Question extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['type_id', 'parent','pp'], 'integer'],
-            [['question', 'question_en', 'desc', 'desc_en'], 'string', 'max' => 255],
-            [['type_id'], 'exist', 'skipOnError' => true, 'targetClass' => Type::className(), 'targetAttribute' => ['type_id' => 'id']],
+            [['type_id','group_id'], 'required'],
+            [['type_id', 'parent','pp','group_id'], 'integer'],
+            [['symbol'], 'required'],
+            [['question', 'question_en', 'desc', 'desc_en','symbol'], 'string', 'max' => 255],
+            [['group_id'], 'exist', 'skipOnError' => false, 'targetClass' => Questiongroup::className(), 'targetAttribute' => ['group_id' => 'id']],
+            [['type_id'], 'exist', 'skipOnError' => false, 'targetClass' => Type::className(), 'targetAttribute' => ['type_id' => 'id']],
         ];
     }
 
@@ -58,6 +65,8 @@ class Question extends \yii\db\ActiveRecord
             'type_id' => Yii::t('app', 'Type'),
             'parent' => Yii::t('app', 'Parent'),
             'pp' => Yii::t('app', 'Positive Parent ?'),
+            'symbol' => Yii::t('app', 'Symbol'),
+            'group_id' => Yii::t('app', 'Group ID'),
         ];
     }
 
@@ -74,6 +83,21 @@ class Question extends \yii\db\ActiveRecord
     public function getParent()
     {
         return $this->hasOne(Question::className(), ['id' => 'parent']);
+    }
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getChoices()
+    {
+        return $this->hasMany(Choice::className(), ['question_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getGroup()
+    {
+        return $this->hasOne(Questiongroup::className(), ['id' => 'group_id']);
     }
     public function getParentStatus(){
         switch ($this->pp){

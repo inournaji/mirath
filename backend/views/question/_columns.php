@@ -39,7 +39,19 @@ return [
         'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'desc_en',
     ],
+    [
+        'class'=>'\kartik\grid\DataColumn',
+        'attribute'=>'type_id',
+        'value'=>function ($model, $key, $index, $widget) {
+            return $model->group->name;
+        },
 
+    ],
+
+    [
+        'class'=>'\kartik\grid\DataColumn',
+        'attribute'=>'symbol',
+    ],
     [
         'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'type_id',

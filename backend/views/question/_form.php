@@ -5,7 +5,7 @@ use common\models\Type;
 use common\models\Question;
 use yii\helpers\ArrayHelper;
 use kartik\select2\Select2;
-
+use common\models\Questiongroup;
 /* @var $this yii\web\View */
 /* @var $model common\models\Question */
 /* @var $form yii\widgets\ActiveForm */
@@ -23,9 +23,19 @@ use kartik\select2\Select2;
 
     <?= $form->field($model, 'desc_en')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'symbol')->textInput(['maxlength' => true]) ?>
+
+
     <?= $form->field($model, 'type_id')->widget(Select2::className(),[
         'data' => ArrayHelper::map(Type::find()->all(),'id','name'),
         'options' => ['placeholder' => 'Select a Type ...'],
+        'pluginOptions' => [
+            'allowClear' => true,
+        ],
+    ]) ?>
+    <?= $form->field($model, 'parent')->widget(Select2::className(),[
+        'data' => ArrayHelper::map(Question::find()->all(),'id','question'),
+        'options' => ['placeholder' => 'Select parent question ...'],
         'pluginOptions' => [
             'allowClear' => true,
         ],
@@ -37,19 +47,21 @@ use kartik\select2\Select2;
                 Question::YESANSWER => Yii::t('app', 'Yes'),
                 Question::BOTHANSWER =>  Yii::t('app', 'Both'),
         ],
-        'options' => ['placeholder' => 'Select a Type ...'],
+        'options' => ['placeholder' => 'Select Parent answer ...'],
         'pluginOptions' => [
             'allowClear' => true,
         ],
     ]) ?>
 
-    <?= $form->field($model, 'parent')->widget(Select2::className(),[
-        'data' => ArrayHelper::map(Question::find()->all(),'id','question'),
-        'options' => ['placeholder' => 'Select parent question ...'],
+
+    <?= $form->field($model, 'group_id')->widget(Select2::className(),[
+        'data' => ArrayHelper::map(Questiongroup::find()->all(),'id','name'),
+        'options' => ['placeholder' => 'Select a group ...'],
         'pluginOptions' => [
             'allowClear' => true,
         ],
     ]) ?>
+
 
   
 	<?php if (!Yii::$app->request->isAjax){ ?>
