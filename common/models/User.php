@@ -25,6 +25,7 @@ class User extends ActiveRecord implements IdentityInterface
 {
     const STATUS_DELETED = 0;
     const STATUS_ACTIVE = 10;
+    public $tmp_password;
 
 
     /**
@@ -52,7 +53,18 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return [
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
+            [['tmp_password'],'string'],
+            [['email'],'email'],
+            ['username', 'unique','targetClass' => '\common\models\User', 'message' => 'This username has already been taken.'],
+            ['email', 'unique','targetClass' => '\common\models\User', 'message' => 'This email has already been taken.'],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
+        ];
+    }
+
+    public function attributeLabels()
+    {
+        return [
+            'tmp_password' => Yii::t('app', 'Password'),
         ];
     }
 
@@ -185,5 +197,27 @@ class User extends ActiveRecord implements IdentityInterface
     public function removePasswordResetToken()
     {
         $this->password_reset_token = null;
+    }
+
+
+    public  function beforeSave($insert)
+    {
+        if($this->tmp_password)
+            $this->setPassword($this->tmp_password);
+        return parent::beforeSave($insert);
+    }
+    public function getStatus(){
+        switch ($this->status){
+            case self::STATUS_ACTIVE:
+                return 'Active';
+                break;
+            case self::STATUS_DELETED:
+                return 'Not Active';
+                break;
+            default:
+                return null;
+                break;
+
+        }
     }
 }
