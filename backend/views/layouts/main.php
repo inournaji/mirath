@@ -41,9 +41,14 @@ AppAsset::register($this);
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
     } else {
-        $menuItems [] = ['label' => 'Questions', 'url' => ['/question']];
-        $menuItems [] = ['label' => 'Question types', 'url' => ['/type']];
-        $menuItems [] = ['label' => 'Choices', 'url' => ['/choice']];
+        $menuItems [] = ['label' => 'Question Administration',
+            'items' => [
+                    ['label' => 'Questions', 'url' => ['/question']],
+                    ['label' => 'Question types', 'url' => ['/type']],
+                    ['label' => 'Question groups', 'url' => ['/questiongroup']],
+                    ['label' => 'Choices', 'url' => ['/choice']],
+                ],
+            ];
         $menuItems [] = ['label' => 'User Administration', 'url' => ['/user']];
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
