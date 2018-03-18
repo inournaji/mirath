@@ -1,6 +1,12 @@
+@import url('https://fonts.googleapis.com/css?family=Amiri:700');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
 html,
 body {
     height: 100%;
+}
+html[dir="rtl"]{
+    font-family: 'Amiri', serif;
 }
 
 .wrap {
@@ -169,6 +175,9 @@ a.desc:after {
 }
 
 /* Question Form Start */
+.question-wrapper {
+    border-bottom: 1px solid #d3cccc;
+    padding: 10px 0px;}
 .question-wrapper .question-text,
 .question-wrapper .answer{
     display: inline-block;
@@ -180,6 +189,11 @@ a.desc:after {
     -moz-box-shadow: 0px 0px 30px -1px rgba(53, 48, 12);
     box-shadow: 0px 0px 30px -1px rgba(53, 48, 12, 1);
     /* border-radius: 13px; */
+}
+.question-text{
+    margin: 10px 0;
+    font-family: Amiri;
+    font-size: 25px;
 }
 html[dir=rtl] .question-text{
     text-align: right;
@@ -197,4 +211,14 @@ html[dir=rtl] .answer{
 .answer.choice.col-md-8 {
     text-align: right;
 }
+.answer input[type="text"]{
+    width: 200px;
+    height: 42px;
+    background: #fafafa;
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    padding: 8px 10px;
+    float: right;
+}
+
 /* Question Form End */

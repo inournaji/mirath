@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use kartik\switchinput\SwitchInput;
+use kartik\touchspin\TouchSpin;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Inheritance */
@@ -21,14 +23,24 @@ use yii\widgets\ActiveForm;
        switch ($row->type_id){
            case 1:
                ?>
-               <div class="question-text col-md-3">
+               <div class="question-text col-md-4">
                    <?=$row->question ?>
                </div>
                <div class="answer col-md-8">
-                   <?= Html::radioList($row->symbol,null,[
+                   <?=SwitchInput::widget([
+                       'name' => $row->symbol,
+                       'pluginOptions' => [
+                           'size' => 'large',
+                           'onColor' => 'success',
+                           'offColor' => 'danger',
+                           'onText' => Yii::t('app','Yes'),
+                           'offText' => Yii::t('app','No'),
+                       ]
+                   ]);
+                   /* Html::radioList($row->symbol,null,[
                         \common\models\Question::YESANSWER => Yii::t('app','Yes'),
                         \common\models\Question::NOANSWER => Yii::t('app','No')
-                   ]);?>
+                   ]);*/?>
                </div>
                    <?php
                    break;
@@ -36,7 +48,7 @@ use yii\widgets\ActiveForm;
 
                <?php
            case 2: ?>
-               <div class="question-text col-md-3">
+               <div class="question-text col-md-4">
                    <?=$row->question ?>
                </div>
             <div class="answer choice col-md-8">
@@ -53,7 +65,7 @@ use yii\widgets\ActiveForm;
                <?php
                break;
            case 3:  ?>
-               <div class="question-text col-md-3">
+               <div class="question-text col-md-4">
                    <?=$row->question ?>
                </div>
                <div class="answer col-md-8">
