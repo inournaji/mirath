@@ -126,33 +126,39 @@ a.desc:after {
 }
 
 /*Custom style start*/
+/*General start*/
+.lead{
+    color: #fff;
+    font-family: Amiri;
+}
+.btn-main{
+    background-color: #fff;
+    color: #0f3648;
+    border: 1.5px solid #0c222d;
+    width: 100px;
+    border-radius: 0px;
+    height: 50px;
+    font-family: Amiri;
+    transition:  1s;
+}
+.btn-main:hover{
+    background-color: #0c222d;
+    color: #fff;
+    border: 1px solid #fff;
+    width: 102px;
+    height: 51px;
 
+
+}
+/*General end */
 .navbar-inverse.navbar-fixed-top.navbar{
     display: none;
 }
-.wrap.main-content{
-    /*background-image: url(../images/index-bg.jpg),
-    -moz-linear-gradient(top, #ADB2B6 0%, #ABAEB3 100%);
-    background-image: url(../images/index-bg.jpg),
-    -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ADB2B6), color-stop(100%, #ABAEB3));
-    background-image: url(../images/index-bg.jpg),
-    linear-gradient(to bottom, #ADB2B6, #ABAEB3);*/
 
-   /* background:  url(../images/index-bg.jpg));
-    background:  url(../images/index-bg.jpg),-moz-linear-gradient(-45deg, rgba(255,255,255,1) 0%, rgba(251,251,251,1) 30%, rgba(246,246,246,0.79) 61%, rgba(255,255,255,0.53) 100%);
-    background:  url(../images/index-bg.jpg),-webkit-gradient(left top, right bottom, color-stop(0%, rgba(255,255,255,1)), color-stop(30%, rgba(251,251,251,1)), color-stop(61%, rgba(246,246,246,0.79)), color-stop(100%, rgba(255,255,255,0.53)));
-    background:  url(../images/index-bg.jpg),-webkit-linear-gradient(-45deg, rgba(255,255,255,1) 0%, rgba(251,251,251,1) 30%, rgba(246,246,246,0.79) 61%, rgba(255,255,255,0.53) 100%);
-    background:  url(../images/index-bg.jpg),-o-linear-gradient(-45deg, rgba(255,255,255,1) 0%, rgba(251,251,251,1) 30%, rgba(246,246,246,0.79) 61%, rgba(255,255,255,0.53) 100%);
-    background:   url(../images/index-bg.jpg),-ms-linear-gradient(-45deg, rgba(255,255,255,1) 0%, rgba(251,251,251,1) 30%, rgba(246,246,246,0.79) 61%, rgba(255,255,255,0.53) 100%);
-    background:  url(../images/index-bg.jpg),linear-gradient(135deg, rgba(255,255,255,1) 0%, rgba(251,251,251,1) 30%, rgba(246,246,246,0.79) 61%, rgba(255,255,255,0.53) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ffffff', GradientType=1 );
-
-    background-size: contain;*/
-}
 
 .wrap.main-content::after {
     content: "";
-    background: #b3ceda  url(../images/arabesque.png);
+    background: #0f3648  url(../images/arabesque.png);
     top: 0;
     left: 0;
     bottom: 0;
@@ -161,6 +167,13 @@ a.desc:after {
     z-index: -1;
 
 
+}
+.site-logo img{
+    margin: auto;
+}
+.site-logo{
+    display: block;
+    text-align: center;
 }
 
 /*language switcher*/

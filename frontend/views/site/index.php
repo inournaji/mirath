@@ -6,12 +6,14 @@ $this->title = 'Mirath';
 ?>
 <div class="site-index">
 
-    <div class="jumbotron">
-        <h1><?=Yii::t('app', 'Mirath') ?></h1>
+    <div class="site-logo">
+        <img class="img-responsive" src="images/logo.png">
+    </div>
 
+    <div class="jumbotron">
         <p class="lead"><?=Yii::t('app','The most accurate inheritance calculator based on the Islamic law')?></p>
 
-        <p><a class="btn btn-lg btn-success" href="inheritance"><?=Yii::t('app','Start')?></a></p>
+        <p><a class="btn btn-lg btn-success btn-main" href="inheritance"><?=Yii::t('app','Start')?></a></p>
     </div>
 
 <!--    <div class="body-content">-->
