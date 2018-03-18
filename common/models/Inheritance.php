@@ -38,6 +38,7 @@ class Inheritance extends \yii\db\ActiveRecord
     Const NOTEXIST =0;
     Const EXIST = 1;
     public $questions = array();
+    public $currentAnswers = array();
     /**
      * {@inheritdoc}
      */

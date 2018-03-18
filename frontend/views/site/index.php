@@ -11,7 +11,7 @@ $this->title = 'Mirath';
 
         <p class="lead"><?=Yii::t('app','The most accurate inheritance calculator based on the Islamic law')?></p>
 
-        <p><a class="btn btn-lg btn-success" href="#"><?=Yii::t('app','Start')?></a></p>
+        <p><a class="btn btn-lg btn-success" href="inheritance"><?=Yii::t('app','Start')?></a></p>
     </div>
 
 <!--    <div class="body-content">-->

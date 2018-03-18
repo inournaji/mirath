@@ -10,6 +10,9 @@ return[
     'Home' => 'الرئيسية',
     'Mirath' => 'ميراث',
     'Start' => 'ابدأ',
+    'Yes' => 'نعم',
+    'No' => 'لا',
+    'Continue' => 'متابعة',
     'The most accurate inheritance calculator based on the Islamic law' => 'أدق موقع لحساب التركة حسب الشريعة الإسلامية',
 ];
 ?>

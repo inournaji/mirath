@@ -28,6 +28,7 @@ class Question extends \yii\db\ActiveRecord
     Const NOANSWER = 0;
     Const YESANSWER = 1;
     Const BOTHANSWER = 2;
+    public $visible = false;
     /**
      * {@inheritdoc}
      */
@@ -114,4 +115,15 @@ class Question extends \yii\db\ActiveRecord
                 return '';
         }
     }
+    public static function Initialize(){
+        $questoins = Question::find()->all();
+        $tmp = array();
+        foreach ($questoins as $record){
+            if(!$record->parent){
+               $tmp [] = $record;
+            }
+        }
+        return $tmp;
+    }
+
 }
