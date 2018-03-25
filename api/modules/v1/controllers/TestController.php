@@ -26,12 +26,7 @@ class TestController extends ActiveController
 //        $test =   Question::find()->where(['id' => 22])->with('choices')->with('type')->one();
 //        return $test;
 
-        $activeData = new ActiveDataProvider([
-            'query' => Question::find()->with('choices')->with('type'),
-            'pagination'=>false,
 
-        ]);
-        return $activeData;
 
 
     }

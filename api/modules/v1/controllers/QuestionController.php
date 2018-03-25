@@ -25,22 +25,13 @@ use yii\rest\Controller;
  */
 class QuestionController extends Controller
 {
-    public function behaviors()
-    {
-        return ArrayHelper::merge(
-            parent::behaviors(), [
-                'authenticator' => [
-                    'class' => CompositeAuth::className(),
-                    'except' => ['index'],
-                    'authMethods' => [
-                        HttpBearerAuth::className(),
-                    ],
-                ],
-            ]
-        );
-    }
     public function actionIndex(){
-       return Question::find()->joinWith('choices')->all();
+        $activeData = new ActiveDataProvider([
+            'query' => Question::find()->with('choices')->with('type'),
+            'pagination'=>false,
+
+        ]);
+        return $activeData;
     }
 
 
