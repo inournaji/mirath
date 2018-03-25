@@ -13,7 +13,9 @@ use yii\filters\auth\CompositeAuth;
 use yii\filters\auth\HttpBearerAuth;
 use yii\helpers\ArrayHelper;
 use yii\rest\ActiveController;
-use common\models\Setting;
+use common\models\Question;
+use yii\data\ActiveDataProvider;
+
 
 class TestController extends ActiveController
 {
@@ -21,7 +23,16 @@ class TestController extends ActiveController
 
     public function actionTry()
     {
-        return "Done";
+//        $test =   Question::find()->where(['id' => 22])->with('choices')->with('type')->one();
+//        return $test;
+
+        $activeData = new ActiveDataProvider([
+            'query' => Question::find()->with('choices')->with('type'),
+            'pagination'=>false,
+
+        ]);
+        return $activeData;
+
 
     }
 }

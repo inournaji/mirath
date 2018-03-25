@@ -15,6 +15,8 @@ use yii\filters\VerbFilter;
  */
 class InheritanceController extends Controller
 {
+    public $bodyClass='inheritance';
+
     /**
      * {@inheritdoc}
      */

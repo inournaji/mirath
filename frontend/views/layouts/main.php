@@ -23,13 +23,13 @@ AppAsset::register($this);
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
-<body>
+<body class="<?=isset($this->context->bodyClass)?$this->context->bodyClass:''?>">
 <?php $this->beginBody() ?>
 
 <div class="wrap main-content">
     <?php
     NavBar::begin([
-        'brandLabel' => Yii::$app->name,
+        'brandLabel' => '<img src="images/logo.png" class="pull-left site-logo"/>'  ,
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',

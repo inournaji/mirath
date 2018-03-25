@@ -13,6 +13,7 @@ return[
     'Yes' => 'نعم',
     'No' => 'لا',
     'Continue' => 'متابعة',
+    'Calculate' => 'احتساب',
     'The most accurate inheritance calculator based on the Islamic law' => 'الخدمة الأكثر دقة لحساب التركة حسب الشريعة الإسلامية',
 ];
 ?>

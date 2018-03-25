@@ -59,7 +59,8 @@ return [
                     $response->data = [
                         'success' => false,
                         'message' => "server error",
-                        'data' => [['error' => "Something went wrong, try again later."]]
+                        'data' => $response->data,
+                        //'data' => [['error' => "Something went wrong, try again later."]]
                     ];
                 }
             }
@@ -101,6 +102,10 @@ return [
                         'GET try' => 'try',
 
                     ],
+                ],
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => ['v1/question'],
                 ],
             ],
         ]

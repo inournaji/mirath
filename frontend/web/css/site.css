@@ -150,20 +150,54 @@ a.desc:after {
 
 
 }
+.btn-main-reversed{
+    background-color: #0f3648;
+    color: #fff;
+    border: 1.5px solid #fff;
+    width: 100px;
+    border-radius: 0px;
+    height: 50px;
+    font-family: Amiri;
+    transition:  1s;
+}
+btn-main-reversed:hover{
+    background-color: #fff;
+    color: #0c222d;
+    border: 1px solid #0c222d;
+    width: 102px;
+    height: 51px;
+
+
+}
+
 /*General end */
-.navbar-inverse.navbar-fixed-top.navbar{
+.site .navbar-inverse.navbar-fixed-top.navbar{
     display: none;
 }
 
 
-.wrap.main-content::after {
+.site .wrap.main-content::after {
     content: "";
     background: #0f3648  url(../images/arabesque.png);
+    opacity: 1;
     top: 0;
     left: 0;
     bottom: 0;
     right: 0;
-    position: absolute;
+    position: fixed;
+    z-index: -1;
+
+
+}
+.wrap.main-content::after {
+    content: "";
+    background: #0f3648  url(../images/index-bg.jpg);
+    opacity: 0.4;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: fixed;
     z-index: -1;
 
 

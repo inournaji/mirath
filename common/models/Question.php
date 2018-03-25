@@ -3,6 +3,9 @@
 namespace common\models;
 
 use Yii;
+use yii\helpers\Html;
+use kartik\switchinput\SwitchInput;
+use kartik\touchspin\TouchSpin;
 
 /**
  * This is the model class for table "question".
@@ -13,6 +16,7 @@ use Yii;
  * @property string $desc
  * @property string $desc_en
  * @property int $pp
+ * @property int $parent
  * @property int $type_id
  * @property string $symbol
  * @property int $group_id
@@ -20,7 +24,7 @@ use Yii;
  * @property Choice[] $choices
  * @property Questiongroup $group
  * @property Type $type
- * @property Question $parent
+ * @property Question[] $children
  */
 class Question extends \yii\db\ActiveRecord
 {
@@ -29,6 +33,7 @@ class Question extends \yii\db\ActiveRecord
     Const YESANSWER = 1;
     Const BOTHANSWER = 2;
     public $visible = false;
+    public $children =array();
     /**
      * {@inheritdoc}
      */
@@ -36,6 +41,7 @@ class Question extends \yii\db\ActiveRecord
     {
         return 'question';
     }
+
 
     /**
      * {@inheritdoc}
@@ -46,6 +52,7 @@ class Question extends \yii\db\ActiveRecord
             [['type_id','group_id'], 'required'],
             [['type_id', 'parent','pp','group_id'], 'integer'],
             [['symbol'], 'required'],
+            [['visible'], 'safe'],
             [['question', 'question_en', 'desc', 'desc_en','symbol'], 'string', 'max' => 255],
             [['group_id'], 'exist', 'skipOnError' => false, 'targetClass' => Questiongroup::className(), 'targetAttribute' => ['group_id' => 'id']],
             [['type_id'], 'exist', 'skipOnError' => false, 'targetClass' => Type::className(), 'targetAttribute' => ['type_id' => 'id']],
@@ -71,6 +78,15 @@ class Question extends \yii\db\ActiveRecord
         ];
     }
 
+    public function fields()
+    {
+        $test =  parent::fields();
+        $test[] = 'visible';
+        $test[] = 'type';
+        $test[] = 'choices';
+        return $test;
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -81,10 +97,10 @@ class Question extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getParent()
-    {
-        return $this->hasOne(Question::className(), ['id' => 'parent']);
-    }
+//    public function getParent()
+//    {
+//        return $this->hasOne(Question::className(), ['id' => 'parent']);
+//    }
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -116,14 +132,71 @@ class Question extends \yii\db\ActiveRecord
         }
     }
     public static function Initialize(){
-        $questoins = Question::find()->all();
-        $tmp = array();
-        foreach ($questoins as $record){
-            if(!$record->parent){
-               $tmp [] = $record;
-            }
-        }
+        $tmp =  Question::find()->where(['parent' => null])->all();
         return $tmp;
+    }
+
+    public function afterFind()
+    {
+        //$this->children = Question::find()->where(['parent' => $this->id])->all();
+        if($this->parent == null){
+            $this->visible = true;
+        }
+        //$this->parent = true;
+    }
+
+    public static function render(array $models){
+        $html = '';
+        $shown = '';
+        $hidden ='';
+        foreach ($models as $row){
+            $html .='<div class="question-wrapper row">';
+                switch ($row->type_id){
+                    case 1:
+                        $html .= '<div class="question-text col-md-4">';
+                        $html .= $row->question.'</div>';
+                        $html .= '<div class="answer col-md-8">';
+                        $html .= SwitchInput::widget([
+                                'name' => $row->symbol,
+                                'pluginOptions' => [
+                                    'size' => 'large',
+                                    'onColor' => 'success',
+                                    'offColor' => 'danger',
+                                    'onText' => Yii::t('app','Yes'),
+                                    'offText' => Yii::t('app','No'),
+                                ]
+                            ]);
+                        $html .= '</div>';
+                        break;
+                    case 2:
+                        $html .='<div class="question-text col-md-4">';
+                        $html .=$row->question;
+                        $html .='</div>';
+                        $html .='<div class="answer choice col-md-8">';
+                            $first = true;
+                            foreach ($row->choices as $choice){
+
+                                $html .= Html::radio($row->symbol,$first,['label'=>$choice->text]);
+                                $first = false;
+                            }
+                        $html .='</div>';
+                        break;
+                    case 3:
+                        $html .='<div class="question-text col-md-4">';
+                        $html .=$row->question;
+                        $html .='</div>';
+                        $html .='<div class="answer col-md-8">';
+                        $html .= Html::textInput($row->symbol,0);
+                        $html .='</div>';
+                        break;
+
+                }
+
+            $html .='</div>';
+            $html .=Question::render($row->children);
+
+        }
+        return $html;
     }
 
 }
