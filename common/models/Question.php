@@ -132,7 +132,7 @@ class Question extends \yii\db\ActiveRecord
         }
     }
     public static function Initialize(){
-        $tmp =  Question::find()->where(['parent' => null])->all();
+        $tmp =  Question::find()->all();
         return $tmp;
     }
 
@@ -146,56 +146,67 @@ class Question extends \yii\db\ActiveRecord
     }
 
     public static function render(array $models){
-        $html = '';
-        $shown = '';
-        $hidden ='';
+        $shown = '<div id="shown">';
+        $hidden ='<div id="hidden">';
         foreach ($models as $row){
-            $html .='<div class="question-wrapper row">';
+            $tmp ='';
+            $tmp .='<div  class="question-wrapper row">';
                 switch ($row->type_id){
                     case 1:
-                        $html .= '<div class="question-text col-md-4">';
-                        $html .= $row->question.'</div>';
-                        $html .= '<div class="answer col-md-8">';
-                        $html .= SwitchInput::widget([
-                                'name' => $row->symbol,
-                                'pluginOptions' => [
-                                    'size' => 'large',
-                                    'onColor' => 'success',
-                                    'offColor' => 'danger',
-                                    'onText' => Yii::t('app','Yes'),
-                                    'offText' => Yii::t('app','No'),
+                        $tmp .= '<div class="question-text col-md-4">';
+                        $tmp .= $row->question.'</div>';
+                        $tmp .= '<div class="answer col-md-8">';
+                        $tmp .= SwitchInput::widget([
+                            'name' => $row->symbol,
+                            'value' => -1,
+                            'tristate' => true,
+                            'indeterminateValue' => -1,
+                            'pluginOptions' => [
+                                'labelText'=>'<i class="glyphicon glyphicon-question-sign"></i>',
+                                'size' => 'large',
+                                'onColor' => 'success',
+                                'offColor' => 'danger',
+                                'onText' => Yii::t('app','Yes'),
+                                'offText' => Yii::t('app','No'),
                                 ]
                             ]);
-                        $html .= '</div>';
+                        $tmp .= '</div>';
                         break;
                     case 2:
-                        $html .='<div class="question-text col-md-4">';
-                        $html .=$row->question;
-                        $html .='</div>';
-                        $html .='<div class="answer choice col-md-8">';
+                        $tmp .='<div class="question-text col-md-4">';
+                        $tmp .=$row->question;
+                        $tmp .='</div>';
+                        $tmp .='<div class="answer choice col-md-8">';
                             $first = true;
                             foreach ($row->choices as $choice){
 
-                                $html .= Html::radio($row->symbol,$first,['label'=>$choice->text]);
+                                $tmp .= Html::radio($row->symbol,$first,['label'=>$choice->text]);
                                 $first = false;
                             }
-                        $html .='</div>';
+                        $tmp .='</div>';
                         break;
                     case 3:
-                        $html .='<div class="question-text col-md-4">';
-                        $html .=$row->question;
-                        $html .='</div>';
-                        $html .='<div class="answer col-md-8">';
-                        $html .= Html::textInput($row->symbol,0);
-                        $html .='</div>';
+                        $tmp .='<div class="question-text col-md-4">';
+                        $tmp .=$row->question;
+                        $tmp .='</div>';
+                        $tmp .='<div class="answer col-md-8">';
+                        $tmp .= Html::textInput($row->symbol,0);
+                        $tmp .='</div>';
                         break;
 
                 }
 
-            $html .='</div>';
-            $html .=Question::render($row->children);
+            $tmp .='</div>';
+            if($row->parent == null)
+                $shown.= $tmp;
+            else
+                $hidden.=$tmp;
 
         }
+        $shown.="</div>";
+        $hidden.="</div>";
+        $html = $shown.$hidden;
+
         return $html;
     }
 

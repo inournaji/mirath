@@ -267,5 +267,8 @@ html[dir=rtl] .answer{
     padding: 8px 10px;
     float: right;
 }
+#hidden{
+    display: none;
+}
 
 /* Question Form End */
