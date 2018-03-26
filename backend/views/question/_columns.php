@@ -27,7 +27,7 @@ return [
         'attribute'=>'parent',
         'value' => function($model) {
          if($model->parent != null){
-             return $parent =$model->getParent()->one()->question;
+             return $parent =$model->getParents()->one()->question;
          }
         },
     ],

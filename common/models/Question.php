@@ -78,6 +78,15 @@ class Question extends \yii\db\ActiveRecord
         ];
     }
 
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getParents()
+    {
+        return $this->hasOne(Question::className(), ['id' => 'parent']);
+    }
+
     public function fields()
     {
         $test =  parent::fields();
