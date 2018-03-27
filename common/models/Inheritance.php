@@ -32,6 +32,25 @@ use common\models\Question;
  * @property int $paternal_paternal_uncles
  * @property int $full_cousins
  * @property int $paternal_cousins
+ * @property int $status;
+ * @property int $aliveSons ;
+ * @property int $aliveDaughters ;
+ * @property int $aliveGrandsons ;
+ * @property int $aliveGrandDaughters ;
+ * @property int $aliveFullBrothers;
+ * @property int $aliveFullSisters;
+ * @property int $alivePaternalBrothers;
+ * @property int $alivePaternalSisters;
+ * @property int $aliveMaternalBrothers;
+ * @property int $aliveMaternalSisters;
+ * @property int $aliveFullNephews;
+ * @property int $alivePaternalNephews;
+ * @property int $FullUncles;
+ * @property int $aliveFullUncles;
+ * @property int $PaternalUncles;
+ * @property int $alivePaternalUncles;
+ * @property int $aliveFullCousins;
+ * @property int $alivePaternalCousins;
  */
 class Inheritance extends \yii\db\ActiveRecord
 {
@@ -39,6 +58,25 @@ class Inheritance extends \yii\db\ActiveRecord
     Const EXIST = 1;
     public $questions = array();
     public $currentAnswers = array();
+    public $status;
+    public $aliveSons ;
+    public $aliveDaughters ;
+    public $aliveGrandsons ;
+    public $aliveGrandDaughters ;
+    public $aliveFullBrothers;
+    public $aliveFullSisters;
+    public $alivePaternalBrothers;
+    public $alivePaternalSisters;
+    public $aliveMaternalBrothers;
+    public $aliveMaternalSisters;
+    public $aliveFullNephews;
+    public $alivePaternalNephews;
+    public $FullUncles;
+    public $aliveFullUncles;
+    public $PaternalUncles;
+    public $alivePaternalUncles;
+    public $aliveFullCousins;
+    public $alivePaternalCousins;
     /**
      * {@inheritdoc}
      */
@@ -55,7 +93,58 @@ class Inheritance extends \yii\db\ActiveRecord
         return [
 
             [['gender', 'husband', 'wives', 'sons', 'daughters', 'grandsons', 'granddaughters', 'father', 'mother', 'grandfather', 'paternal_grandmother', 'maternal_grandmother', 'full_brothers', 'full_sisters', 'paternal_brothers', 'paternal_sisters', 'maternal_brothers', 'maternal_sisters', 'full_nephews', 'paternal_nephews', 'fullpaternal_uncles', 'paternal_paternal_uncles', 'full_cousins', 'paternal_cousins'], 'integer'],
+            [['gender', 'status','husband', 'wives', 'sons','aliveSons','daughters','aliveDaughters', 'grandsons','aliveGrandsons', 'granddaughters','aliveGrandDaughters', 'father', 'mother', 'grandfather', 'paternal_grandmother', 'maternal_grandmother', 'full_brothers','aliveFullBrothers', 'full_sisters','aliveFullSisters', 'paternal_brothers','alivePaternalBrothers', 'paternal_sisters','alivePaternalSisters', 'maternal_brothers','aliveMaternalBrothers', 'maternal_sisters','aliveMaternalSisters', 'full_nephews','aliveFullNephews', 'paternal_nephews','alivePaternalNephews', 'FullUncles','aliveFullUncles','PaternalUncles', 'alivePaternalUncles', 'full_cousins','aliveFullCousins', 'paternal_cousins','alivePaternalCousins'], 'required'],
+            [['gender', 'status','husband', 'wives', 'sons','aliveSons','daughters','aliveDaughters', 'grandsons','aliveGrandsons', 'granddaughters','aliveGrandDaughters', 'father', 'mother', 'grandfather', 'paternal_grandmother', 'maternal_grandmother', 'full_brothers','aliveFullBrothers', 'full_sisters','aliveFullSisters', 'paternal_brothers','alivePaternalBrothers', 'paternal_sisters','alivePaternalSisters', 'maternal_brothers','aliveMaternalBrothers', 'maternal_sisters','aliveMaternalSisters', 'full_nephews','aliveFullNephews', 'paternal_nephews','alivePaternalNephews', 'FullUncles','aliveFullUncles','PaternalUncles', 'alivePaternalUncles', 'full_cousins','aliveFullCousins', 'paternal_cousins','alivePaternalCousins'],'default' ,'value' => 0],
         ];
+    }
+
+    public  function toClips(){
+        $tmp ='(assert'.PHP_EOL;
+        $tmp .='(dead'.PHP_EOL;
+        $tmp .='(Gender '.$this->gender.')'.PHP_EOL;
+        $tmp .='(Status '.$this->status.')'.PHP_EOL;
+        $tmp .='(Husband '.$this->husband.')'.PHP_EOL;
+        $tmp .='(Wives '.$this->wives.')'.PHP_EOL;
+        $tmp .='(Sons '.$this->sons.')'.PHP_EOL;
+        $tmp .='(aliveSons '.$this->aliveSons.')'.PHP_EOL;
+        $tmp .='(Daughters '.$this->daughters.')'.PHP_EOL;
+        $tmp .='(aliveDaughters '.$this->aliveDaughters.')'.PHP_EOL;
+        $tmp .='(Grandsons '.$this->grandsons.')'.PHP_EOL;
+        $tmp .='(aliveGrandsons '.$this->aliveGrandsons.')'.PHP_EOL;
+        $tmp .='(Granddaughters '.$this->granddaughters.')'.PHP_EOL;
+        $tmp .='(aliveGrandDaughters '.$this->aliveGrandDaughters.')'.PHP_EOL;
+        $tmp .='(Father '.$this->father.')'.PHP_EOL;
+        $tmp .='(Mother '.$this->mother.')'.PHP_EOL;
+        $tmp .='(Grandfather '.$this->grandfather.')'.PHP_EOL;
+        $tmp .='(PaternalGrandmother '.$this->paternal_grandmother.')'.PHP_EOL;
+        $tmp .='(MaternalGrandmother '.$this->maternal_grandmother.')'.PHP_EOL;
+        $tmp .='(FullBrothers  '.$this->full_brothers.')'.PHP_EOL;
+        $tmp .='(aliveFullBrothers '.$this->aliveFullBrothers.')'.PHP_EOL;
+        $tmp .='(FullSisters '.$this->full_sisters.')'.PHP_EOL;
+        $tmp .='(aliveFullSisters '.$this->aliveFullSisters.')'.PHP_EOL;
+        $tmp .='(PaternalBrothers '.$this->paternal_brothers.')'.PHP_EOL;
+        $tmp .='(alivePaternalBrothers '.$this->alivePaternalBrothers.')'.PHP_EOL;
+        $tmp .='(PaternalSisters '.$this->paternal_sisters.')'.PHP_EOL;
+        $tmp .='(alivePaternalSisters '.$this->alivePaternalSisters.')'.PHP_EOL;
+        $tmp .='(MaternalBrothers '.$this->maternal_brothers.')'.PHP_EOL;
+        $tmp .='(aliveMaternalBrothers '.$this->aliveMaternalBrothers.')'.PHP_EOL;
+        $tmp .='(MaternalSisters '.$this->maternal_sisters.')'.PHP_EOL;
+        $tmp .='(aliveMaternalSisters '.$this->aliveMaternalSisters.')'.PHP_EOL;
+        $tmp .='(FullNephews '.$this->full_nephews.')'.PHP_EOL;
+        $tmp .='(aliveFullNephews '.$this->aliveFullNephews.')'.PHP_EOL;
+        $tmp .='(PaternalNephews '.$this->paternal_nephews.')'.PHP_EOL;
+        $tmp .='(alivePaternalNephews '.$this->alivePaternalNephews.')'.PHP_EOL;
+        $tmp .='(FullUncles '.$this->FullUncles.')'.PHP_EOL;
+        $tmp .='(aliveFullUncles '.$this->aliveFullUncles.')'.PHP_EOL;
+        $tmp .='(PaternalUncles '.$this->PaternalUncles.')'.PHP_EOL;
+        $tmp .='(alivePaternalUncles '.$this->alivePaternalUncles.')'.PHP_EOL;
+        $tmp .='(FullCousins '.$this->full_cousins.')'.PHP_EOL;
+        $tmp .='(aliveFullCousins '.$this->aliveFullCousins.')'.PHP_EOL;
+        $tmp .='(PaternalCousins '.$this->paternal_cousins.')'.PHP_EOL;
+        $tmp .='(alivePaternalCousins '.$this->alivePaternalCousins.')'.PHP_EOL;
+        $tmp .='))'.PHP_EOL;
+
+        return $tmp;
     }
 
 

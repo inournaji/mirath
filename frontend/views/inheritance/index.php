@@ -13,7 +13,7 @@ use kartik\touchspin\TouchSpin;
 ?>
 
 <div class="inheritance-form jumbotron">
-    <?= Html::beginForm(['/inheritance/'], 'POST'); ?>
+    <?= Html::beginForm(['/inheritance/'], 'POST',['id'=>'inheritance']); ?>
     <?php
     $test = 0;
     echo  \common\models\Question::render($inheritance->questions);

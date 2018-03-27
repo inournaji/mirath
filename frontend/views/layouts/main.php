@@ -29,7 +29,7 @@ AppAsset::register($this);
 <div class="wrap main-content">
     <?php
     NavBar::begin([
-        'brandLabel' => '<img src="images/logo.png" class="pull-left site-logo"/>'  ,
+        'brandLabel' => Yii::t('app','Mirath')  ,
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',

@@ -220,6 +220,9 @@ btn-main-reversed:hover{
 .language-label{
     cursor: pointer;
 }
+.wrap.main-content{
+    padding-bottom: 0;
+}
 
 /* Question Form Start */
 .question-wrapper {

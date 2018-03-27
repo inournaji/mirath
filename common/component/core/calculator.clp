@@ -1,0 +1,56 @@
+(deftemplate dead
+(slot Gender (type INTEGER) (default 0))
+(slot Status (type INTEGER) (default 0))
+(slot Husband (type INTEGER) (default 0))
+(slot Wives (type INTEGER) (default 0))
+(slot Sons (type INTEGER) (default 0))
+(slot aliveSons (type INTEGER) (default 0))
+(slot Daughters (type INTEGER) (default 0))
+(slot aliveDaughters (type INTEGER) (default 0))
+(slot Grandsons (type INTEGER) (default 0))
+(slot aliveGrandsons (type INTEGER) (default 0))
+(slot Granddaughters (type INTEGER) (default 0))
+(slot Father (type INTEGER) (default 0))
+(slot Mother (type INTEGER) (default 0))
+(slot Grandfather (type INTEGER) (default 0))
+(slot PaternalGrandmother (type INTEGER) (default 0))
+(slot MaternalGrandmother (type INTEGER) (default 0))
+(slot FullBrothers (type INTEGER) (default 0))
+(slot aliveFullBrothers (type INTEGER) (default 0))
+(slot FullSisters (type INTEGER) (default 0))
+(slot aliveFullSisters (type INTEGER) (default 0))
+(slot PaternalBrothers (type INTEGER) (default 0))
+(slot alivePaternalBrothers (type INTEGER) (default 0))
+(slot PaternalSisters (type INTEGER) (default 0))
+(slot alivePaternalSisters (type INTEGER) (default 0))
+(slot MaternalBrothers (type INTEGER) (default 0))
+(slot aliveMaternalBrothers (type INTEGER) (default 0))
+(slot MaternalSisters (type INTEGER) (default 0))
+(slot aliveMaternalSisters (type INTEGER) (default 0))
+(slot FullNephews (type INTEGER) (default 0))
+(slot aliveFullNephews (type INTEGER) (default 0))
+(slot PaternalNephews (type INTEGER) (default 0))
+(slot alivePaternalNephews (type INTEGER) (default 0))
+(slot FullUncles (type INTEGER) (default 0))
+(slot aliveFullUncles (type INTEGER) (default 0))
+(slot PaternalUncles (type INTEGER) (default 0))
+(slot alivePaternalUncles (type INTEGER) (default 0))
+(slot FullCousins (type INTEGER) (default 0))
+(slot aliveFullCousins (type INTEGER) (default 0))
+(slot PaternalCousins (type INTEGER) (default 0))
+(slot alivePaternalCousins (type INTEGER) (default 0))
+);
+
+;---
+
+(defrule rule-1 ( dead( Gender  1)( Status  1)(Husband 1)( Wives  0)( Sons  0)( aliveSons  0)( Daughters  0)( aliveDaughters  0)( Grandsons  0)( aliveGrandsons  0)
+( Granddaughters  0)( Father  0)( Mother  0)( Grandfather  0)( PaternalGrandmother  0)( MaternalGrandmother  0)( FullBrothers  1)
+( aliveFullBrothers  0)( FullSisters  0)( aliveFullSisters  0)( PaternalBrothers  0)( alivePaternalBrothers  0)( PaternalSisters  0)
+( alivePaternalSisters  0)( MaternalBrothers  0)( aliveMaternalBrothers  0)( MaternalSisters  0)( aliveMaternalSisters  0)
+( FullNephews  0)( aliveFullNephews  0)( PaternalNephews  0)( alivePaternalNephews  0)( FullUncles  0)( aliveFullUncles  0)
+( PaternalUncles  0)( alivePaternalUncles  0)( FullCousins  0)( aliveFullCousins  0)( PaternalCousins  0)( alivePaternalCousins  0))
+=>
+(printout t "husband-Half | brother-Osba" crlf) );
+
+
+
