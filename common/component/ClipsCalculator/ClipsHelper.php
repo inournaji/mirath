@@ -17,6 +17,7 @@ class ClipsHelper
 
         $path = \Yii::getAlias('@common') . DIRECTORY_SEPARATOR . "component" . DIRECTORY_SEPARATOR . "core" . DIRECTORY_SEPARATOR;
         $filename =  $path.DIRECTORY_SEPARATOR."calculator.clp";
+        $engine =  $path.DIRECTORY_SEPARATOR."engine".DIRECTORY_SEPARATOR;
         $loader_bat_text  = '(clear)'.PHP_EOL;
         $loader_bat_text  .= '(load  ' . $filename. ' )'.PHP_EOL;
         $loader_bat_text .= $ClipsObject . PHP_EOL;
