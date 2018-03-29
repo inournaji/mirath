@@ -10,21 +10,32 @@ use common\models\Inheritance;
  * Date: 27/03/2018
  * Time: 02:27 م
  */
-class ClipsCalculator
+class ClipsHelper
 {
     public static function calculate($ClipsObject)
     {
 
-        $filename = \Yii::getAlias('@common') . DIRECTORY_SEPARATOR . "component" . DIRECTORY_SEPARATOR . "core" . DIRECTORY_SEPARATOR."calculator.clp";
-        $loader_bat_text  = '(clear)';
-        $loader_bat_text  = '(load  ' . $filename. ' )';
+        $path = \Yii::getAlias('@common') . DIRECTORY_SEPARATOR . "component" . DIRECTORY_SEPARATOR . "core" . DIRECTORY_SEPARATOR;
+        $filename =  $path.DIRECTORY_SEPARATOR."calculator.clp";
+        $loader_bat_text  = '(clear)'.PHP_EOL;
+        $loader_bat_text  .= '(load  ' . $filename. ' )'.PHP_EOL;
         $loader_bat_text .= $ClipsObject . PHP_EOL;
         $loader_bat_text .= '(run)' . PHP_EOL;
         $loader_bat_text .= '(exit)' . PHP_EOL;
-        $tmpfname = tempnam("/tmp", "some-prefix-");
+        $tmpfname = tempnam($path."/tmp", "prefix-");
         $handle = fopen($tmpfname, "w");
         fwrite($handle, $loader_bat_text);
         fclose($handle);
+        $shell_result = shell_exec($path . "clips -f2 " . $tmpfname);
+        $clips_output =  explode("\n",$shell_result);
+        $result = array();
+        foreach ($clips_output as $row){
+            if(strpos($row,',')){
+                $result[] = explode(",",$row);
+            }
+        }
+        return $result;
+
 
     }
 //    public static function ObjectToClips(Inheritance $object){

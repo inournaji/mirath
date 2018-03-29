@@ -8,6 +8,8 @@
 
 namespace api\modules\v1\controllers;
 
+use yii;
+use common\models\Inheritance;
 use common\models\Question;
 use yii\filters\auth\CompositeAuth;
 use yii\filters\auth\HttpBearerAuth;
@@ -16,7 +18,7 @@ use yii\rest\ActiveController;
 use yii\filters\auth\QueryParamAuth;
 use yii\data\ActiveDataProvider;
 use yii\rest\Controller;
-
+use common\component\ClipsCalculator\ClipsHelper;
 
 /**
  * Class InheritanceController
@@ -26,12 +28,17 @@ use yii\rest\Controller;
 class InheritanceController extends Controller
 {
     public function actionSubmit(){
-        $activeData = new ActiveDataProvider([
-            'query' => Question::find()->with('choices')->with('type'),
-            'pagination'=>false,
+        $request = Yii::$app->request;
+        $model = new Inheritance();
+        $post = array_change_key_case($request->post(),CASE_LOWER);
+        if( $model->load($post,'') &&  $model->validate()){
+           $clips_object = $model->toClips();
+           return ClipsHelper::calculate($clips_object);
 
-        ]);
-        return $activeData;
+        }
+        else
+            return "No";
+
     }
 
 

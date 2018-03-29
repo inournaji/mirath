@@ -11,7 +11,6 @@ namespace common\component;
 class Request extends \yii\web\Request {
     public $web;
     public $adminUrl;
-
     public function getUrl(){
 
         return  str_replace("superhero", $this->web, parent::getUrl());

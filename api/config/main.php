@@ -107,6 +107,14 @@ return [
                     'class' => 'yii\rest\UrlRule',
                     'controller' => ['v1/question'],
                 ],
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => ['v1/inheritance'],
+                    'extraPatterns' => [
+                        'POST submit' => 'submit',
+
+                    ],
+                ],
             ],
         ]
     ],
