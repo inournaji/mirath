@@ -27,7 +27,7 @@ class ClipsHelper
         $handle = fopen($tmpfname, "w");
         fwrite($handle, $loader_bat_text);
         fclose($handle);
-        $shell_result = shell_exec($path . "clips-ubuntu -f2 " . $tmpfname);
+        $shell_result = shell_exec($engine . "clips-ubuntu -f2 " . $tmpfname);
         $clips_output =  explode("\n",$shell_result);
         $result = array();
         foreach ($clips_output as $row){
