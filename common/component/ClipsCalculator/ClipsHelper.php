@@ -26,7 +26,6 @@ class ClipsHelper
         $handle = fopen($tmpfname, "w");
         fwrite($handle, $loader_bat_text);
         fclose($handle);
-        return $loader_bat_text;
         $shell_result = shell_exec($path . "clips -f2 " . $tmpfname);
         $clips_output =  explode("\n",$shell_result);
         $result = array();
