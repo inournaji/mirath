@@ -40,7 +40,7 @@ class InheritanceController extends Controller
            else
            {
                Yii::$app->response->statusCode = 204;
-               return;
+               return ['message' => Yii::t('app','no results found')];
 
            }
         }
