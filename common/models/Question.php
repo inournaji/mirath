@@ -16,6 +16,7 @@ use kartik\touchspin\TouchSpin;
  * @property string $desc
  * @property string $desc_en
  * @property int $pp
+ * @property int $default_answer
  * @property int $parent
  * @property int $type_id
  * @property string $symbol
@@ -49,8 +50,8 @@ class Question extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['type_id','group_id'], 'required'],
-            [['type_id', 'parent','pp','group_id'], 'integer'],
+            [['type_id','group_id','default_answer'], 'required'],
+            [['type_id', 'parent','pp','group_id','default_answer'], 'integer'],
             [['symbol'], 'required'],
             [['visible'], 'safe'],
             [['question', 'question_en', 'desc', 'desc_en','symbol'], 'string', 'max' => 255],
@@ -75,6 +76,7 @@ class Question extends \yii\db\ActiveRecord
             'pp' => Yii::t('app', 'Positive Parent ?'),
             'symbol' => Yii::t('app', 'Symbol'),
             'group_id' => Yii::t('app', 'Group ID'),
+            'default_answer' => Yii::t('app', 'Default Answer'),
         ];
     }
 
@@ -163,7 +165,10 @@ class Question extends \yii\db\ActiveRecord
                     case 1:
                         $html .= '<div class="question-text col-md-4">';
                         $html .= $row->question.'</div>';
-                        $html .= '<div class="answer col-md-8">';
+                        $html .= '<div class="info col-md-1">';
+                        $html .= $row->desc?  '<div class="glyphicon glyphicon-info-sign"><span class=" tooltiptext">'.$row->desc.'</span></div>' :'';
+                        $html .= '</div>';
+                        $html .= '<div class="answer col-md-7">';
                         $html .= SwitchInput::widget([
                             'name' => $row->symbol,
                             'value' => -1,
@@ -184,7 +189,10 @@ class Question extends \yii\db\ActiveRecord
                         $html .='<div class="question-text col-md-4">';
                         $html .=$row->question;
                         $html .='</div>';
-                        $html .='<div class="answer choice col-md-8">';
+                        $html .= '<div class="info col-md-1">';
+                        $html .= $row->desc?  '<div class="glyphicon glyphicon-info-sign"><span class=" tooltiptext">'.$row->desc.'</span></div>' :'';
+                        $html .= '</div>';
+                        $html .='<div class="answer choice col-md-7">';
                             $first = true;
                             foreach ($row->choices as $choice){
 
@@ -197,7 +205,10 @@ class Question extends \yii\db\ActiveRecord
                         $html .='<div class="question-text col-md-4">';
                         $html .=$row->question;
                         $html .='</div>';
-                        $html .='<div class="answer col-md-8">';
+                        $html .= '<div class="info col-md-1">';
+                        $html .= $row->desc?  '<div class="glyphicon glyphicon-info-sign"><span class=" tooltiptext">'.$row->desc.'</span></div>' :'';
+                        $html .= '</div>';
+                        $html .='<div class="answer col-md-7">';
                         $html .= Html::textInput($row->symbol,0);
                         $html .='</div>';
                         break;

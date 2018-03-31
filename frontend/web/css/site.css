@@ -233,6 +233,17 @@ btn-main-reversed:hover{
     display: inline-block;
 }
 
+.inheritance-form .submit button{
+    font-family: Amiri;
+    font-size: 25px;
+    padding: 8px 45px;
+    transition: 0.5s;
+    border-radius: 0;
+}
+.inheritance-form .submit{
+    margin-bottom: 0px;
+    margin-top: 50px;
+}
 .inheritance-form.jumbotron{
     background-color: #ffffff;
     -webkit-box-shadow: 0px 0px 30px -1px rgb(53, 48, 12);
@@ -245,15 +256,68 @@ btn-main-reversed:hover{
     font-family: Amiri;
     font-size: 25px;
 }
-html[dir=rtl] .question-text{
+html[dir=rtl] .question-text,
+html[dir=rtl] .info{
     text-align: right;
     float: right;
 }
+.info.col-md-1 {
+    position: relative;
+    display: inline-block;
+}
+
+.info.col-md-1 .tooltiptext::after {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent #555 transparent
+}
+.info.col-md-1 .tooltiptext {
+    line-height: 1.5;
+    visibility: hidden;
+    width: 120px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    font-family: Amiri;
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    top: 140%;
+    left: 50%;
+    margin-left: -60px;
+}
+
+.info.col-md-1:hover .tooltiptext {
+    visibility: visible;
+}
 html[dir=rtl] .answer{
+    text-align: right;
     float: right;
 }
+html[dir=rtl] .kv-ind-container.kv-size-large .kv-ind-toggle{
+    margin-right: 0;
+    margin-left: 16px;
+}
+.kv-ind-container.kv-size-large .kv-ind-toggle{
+    margin-left: 0;
+    margin-right: 16px;
+}
+
+html[dir=rtl] .kv-ind-container{
+    padding-right: 0;
+}
+html[dir=rtl] .answer label {
+    padding: 4px 0 4px 24px;
+}
 .answer label {
-    padding: 4px 12px;
+    padding: 4px 24px 4px 0;
 }
 .answer div {
     text-align: right;

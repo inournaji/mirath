@@ -27,7 +27,9 @@ return [
         'attribute'=>'parent',
         'value' => function($model) {
          if($model->parent != null){
-             return $parent =$model->getParents()->one()->question;
+             $parent =$model->getParents()->one();
+             if($parent)
+             return $parent->question;
          }
         },
     ],
@@ -39,14 +41,6 @@ return [
         'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'desc_en',
     ],
-    [
-        'class'=>'\kartik\grid\DataColumn',
-        'attribute'=>'type_id',
-        'value'=>function ($model, $key, $index, $widget) {
-            return $model->group->name;
-        },
-
-    ],
 
     [
         'class'=>'\kartik\grid\DataColumn',
@@ -54,17 +48,13 @@ return [
     ],
     [
         'class'=>'\kartik\grid\DataColumn',
-        'attribute'=>'type_id',
-        'value'=>function ($model, $key, $index, $widget) {
-            return $model->type->name;
-        },
-
+        'attribute'=>'default_answer',
     ],
     [
         'class'=>'\kartik\grid\DataColumn',
-        'attribute'=>'pp',
+        'attribute'=>'type_id',
         'value'=>function ($model, $key, $index, $widget) {
-            return $model->getParentStatus();
+            return $model->type->name;
         },
 
     ],
