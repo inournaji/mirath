@@ -63,6 +63,14 @@ return [
                         //'data' => [['error' => "Something went wrong, try again later."]]
                     ];
                 }
+                else if ($response->statusCode == 204) {
+                    $response->data = [
+                        'success' => false,
+                        'message' =>Yii::t('app','No results found'),
+                        'data' => $response->data,
+                        //'data' => [['error' => "Something went wrong, try again later."]]
+                    ];
+                }
             }
         ],
         'user' => [

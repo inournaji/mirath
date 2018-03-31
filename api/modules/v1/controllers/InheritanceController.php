@@ -20,6 +20,7 @@ use yii\filters\auth\QueryParamAuth;
 use yii\data\ActiveDataProvider;
 use yii\rest\Controller;
 use common\component\ClipsCalculator\ClipsHelper;
+use yii\web\HttpException;
 
 /**
  * Class InheritanceController
@@ -39,13 +40,13 @@ class InheritanceController extends Controller
                return $result;
            else
            {
-               Yii::$app->response->statusCode = 204;
-               return ['message' => Yii::t('app','no results found')];
-
+              throw new HttpException(204,Yii::t('app','No results found'));
            }
         }
-        else
-            return $model->getErrors();
+        else{
+            Yii::$app->response->statusCode = 400;
+        }
+
 
     }
 
