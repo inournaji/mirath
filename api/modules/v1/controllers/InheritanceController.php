@@ -45,6 +45,7 @@ class InheritanceController extends Controller
         }
         else{
             Yii::$app->response->statusCode = 400;
+            return $model->getErrors();
         }
 
 

@@ -45,7 +45,7 @@ return [
                     $response->data = [
                         'success' => false,
                         'message' => "Bad Request",
-                        'data' => [['error' => $response->data['message']]]
+                        'data' => ['error' => $response->data]
                     ];
                 }
                 else if ($response->statusCode == 401) {
@@ -67,7 +67,7 @@ return [
                     $response->data = [
                         'success' => false,
                         'message' =>Yii::t('app','No results found'),
-                        'data' => $response->data,
+                        'data' => ['error' => $response->data]
                         //'data' => [['error' => "Something went wrong, try again later."]]
                     ];
                 }
