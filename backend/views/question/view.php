@@ -23,6 +23,7 @@ use yii\widgets\DetailView;
                 }
             ],
             'parent',
+            'default_answer'
         ],
     ]) ?>
 

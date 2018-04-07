@@ -24,6 +24,7 @@ use common\models\Questiongroup;
     <?= $form->field($model, 'desc_en')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'symbol')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'default_answer')->textInput(['maxlength' => true]) ?>
 
 
     <?= $form->field($model, 'type_id')->widget(Select2::className(),[

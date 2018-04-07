@@ -124,6 +124,12 @@ class Inheritance extends \yii\db\ActiveRecord
         $tmp .='(PaternalCousins '.$this->paternalcousins.')'.PHP_EOL;
         $tmp .='))';
 
+
+
+
+
+
+
         return $tmp;
     }
 

@@ -19,7 +19,7 @@ use kartik\touchspin\TouchSpin;
     echo  \common\models\Question::render($inheritance->questions);
 
         ?>
-    <div class="form-group">
+    <div class="form-group submit">
         <?= Html::submitButton(Yii::t('app','Calculate'), ['class' => 'btn btn-primary']) ?>
     </div>
 

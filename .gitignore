@@ -33,3 +33,9 @@ phpunit.phar
 
 # vagrant runtime
 /.vagrant
+
+# clips related
+/common/component/core/tmp
+/common/component/core/engine
+
+

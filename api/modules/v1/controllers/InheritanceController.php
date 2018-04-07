@@ -8,6 +8,7 @@
 
 namespace api\modules\v1\controllers;
 
+use DeepCopyTest\Matcher\Y;
 use yii;
 use common\models\Inheritance;
 use common\models\Question;
@@ -33,11 +34,18 @@ class InheritanceController extends Controller
         $post = array_change_key_case($request->post(),CASE_LOWER);
         if( $model->load($post,'') &&  $model->validate()){
            $clips_object = $model->toClips();
-           return ClipsHelper::calculate($clips_object);
+           $result = ClipsHelper::calculate($clips_object);
+           if(is_array($result) && count($result) !=0 )
+               return $result;
+           else
+           {
+               Yii::$app->response->statusCode = 204;
+               return;
 
+           }
         }
         else
-            return "No";
+            return $model->getErrors();
 
     }
 
