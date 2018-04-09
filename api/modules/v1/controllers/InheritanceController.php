@@ -30,6 +30,7 @@ use yii\web\HttpException;
 class InheritanceController extends Controller
 {
     public function actionSubmit(){
+        \Yii::$app->language = 'ar-SY';
         $request = Yii::$app->request;
         $model = new Inheritance();
         $post = array_change_key_case($request->post(),CASE_LOWER);

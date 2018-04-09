@@ -123,16 +123,16 @@ class Inheritance extends \yii\db\ActiveRecord
         $tmp .='(FullCousins '.$this->fullcousins.')'.PHP_EOL;
         $tmp .='(PaternalCousins '.$this->paternalcousins.')'.PHP_EOL;
         $tmp .='))';
-
-
-
-
-
-
-
         return $tmp;
     }
 
+    public static function renderLabels(array $result){
+        for($i=0 ; $i < count($result);$i++){
+
+
+        }
+
+}
 
     /**
      * {@inheritdoc}
