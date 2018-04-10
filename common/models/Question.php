@@ -171,7 +171,7 @@ class Question extends \yii\db\ActiveRecord
                         $html .= '<div class="answer col-md-7">';
                         $html .= SwitchInput::widget([
                             'name' => $row->symbol,
-                            'value' => -1,
+                            'value' => $row->default_answer,
                             'tristate' => true,
                             'indeterminateValue' => -1,
                             'pluginOptions' => [
@@ -196,7 +196,7 @@ class Question extends \yii\db\ActiveRecord
                             $first = true;
                             foreach ($row->choices as $choice){
 
-                                $html .= Html::radio($row->symbol,$first,['label'=>$choice->text,'value'=>$choice->value]);
+                                $html .= Html::radio($row->symbol,$first,['label'=>$choice->text,'value'=>$row->default_answer]);
                                 $first = false;
                             }
                         $html .='</div>';
@@ -209,17 +209,13 @@ class Question extends \yii\db\ActiveRecord
                         $html .= $row->desc?  '<div class="glyphicon glyphicon-info-sign"><span class=" tooltiptext">'.$row->desc.'</span></div>' :'';
                         $html .= '</div>';
                         $html .='<div class="answer col-md-7">';
-                        $html .= Html::textInput($row->symbol,0);
+                        $html .= Html::textInput($row->symbol,$row->default_answer);
                         $html .='</div>';
                         break;
-
                 }
-
             $html .='</div>';
-
         }
         $html.="</div>";
         return $html;
     }
-
 }
