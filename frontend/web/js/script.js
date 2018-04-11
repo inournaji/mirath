@@ -430,10 +430,6 @@ function fullbrosonhajb ()
         related.push('PaternalUnclesBool','PaternalUncles');
     }
 
-    if(!jQuery('#PaternalNephewsBool').hasClass('hidden'))
-    {
-        related.push('PaternalNephewsBool','PaternalNephews');
-    }
     if(!jQuery('#PaternalCousinsBool').hasClass('hidden'))
     {
         related.push('PaternalCousinsBool','PaternalCousins');
@@ -465,8 +461,6 @@ function parbrosonhajb ()
 function fullunclehajb ()
 {
     related =[];
-
-
     if(!jQuery('#FullCousinsBool').hasClass('hidden'))
     {
         related.push('FullCousinsBool','FullCousins');
@@ -853,10 +847,50 @@ variables();
     //الأخت لأب
     jQuery('#PaternalSistersBool').on('switchChange.bootstrapSwitch',function (e,data){forallhajb();forall_(data,'PaternalSisters');});
     //ابن الأخ الشقيق
-    jQuery('#PaternalNephewsBool').on('switchChange.bootstrapSwitch',function (e,data){forallhajb();forall_(data,'PaternalNephews');});
-    //العم
+    jQuery('#PaternalNephewsBool').on('switchChange.bootstrapSwitch',function (e,data){forall_(data,'PaternalNephews');});
     jQuery('#FullUnclesBool').on('switchChange.bootstrapSwitch',function (e,data)
-    {forallhajb();
+    {
+        if(data)
+        {
+            forall_(data,'FullUncles');
+            var  related =['FullCousinsBool'];
+            related.forEach(showQuestion);
+        }
+        if(!data) {
+            var related = ['PaternalUnclesBool'];
+            related.forEach(showQuestion);
+            if (!jQuery('#FullUncles').hasClass('hidden')) {
+                related = ['FullUncles'];
+                related.forEach(hideQuestion);
+            }
+            if (!jQuery('#FullCousinsBool').hasClass('hidden')) {
+                related = ['FullCousinsBool'];
+                related.forEach(hideQuestion);
+            }
+
+
+
+        }});
+    jQuery("input[name='FullUncles']").change(function () {
+        if ((jQuery("input[name='FullUncles']").val() > 0))
+        {
+
+            if(!jQuery('#FullCousinsBool').hasClass('hidden')){
+                related =['FullCousinsBool'];
+                related.forEach(hideQuestion);
+            }
+        }
+        if ((jQuery("input[name='FullUncles']").val() == 0))
+        {
+            var  related = ['PaternalUnclesBool'];
+            related.forEach(showQuestion);
+
+        }
+    });
+    //العم
+   /* jQuery('#FullUnclesBool').on('switchChange.bootstrapSwitch',function (e,data)
+    {
+        forallhajb();
         if(data)
         {
             forall_(data,'FullUncles');
@@ -876,6 +910,11 @@ variables();
                 related = ['PaternalUnclesBool'];
                 related.forEach(hideQuestion);
             }
+            if(!jQuery('#FullCousinsBool').hasClass('hidden'))
+            {
+                related = ['FullCousinsBool'];
+                related.forEach(hideQuestion);
+            }
         }});
     jQuery("input[name='FullUncles']").change(function () {
         forallhajb();
@@ -891,36 +930,43 @@ variables();
             related.forEach(showQuestion);
 
         }
-    });
+    });*/
     //ابن العم
-    jQuery('#FullCousinsBool').on('switchChange.bootstrapSwitch',function (e,data){forallhajb();forall_(data,'FullCousins');});
+    jQuery('#FullCousinsBool').on('switchChange.bootstrapSwitch',function (e,data){forall_(data,'FullCousins');});
     //العم لأب
-    jQuery('#FullUnclesBool').on('switchChange.bootstrapSwitch',function (e,data)
-    {forallhajb();
+    jQuery('#PaternalUnclesBool').on('switchChange.bootstrapSwitch',function (e,data)
+    {
         forall_(data,'PaternalUncles');
     if(data)
         {
             var  related =['PaternalCousinsBool'];
             related.forEach(showQuestion);
         }
+        if(!data){}
 
         });
     jQuery("input[name='PaternalUncles']").change(function () {
-        forallhajb();
         if ((jQuery("input[name='PaternalUncles']").val() > 0))
         {
-            if(!jQuery('#PaternalUncles').hasClass('hidden')){
-                forallhajb();
+            if(!jQuery('#PaternalCousinsBool').hasClass('hidden')){
+                related =['PaternalCousinsBool'];
+                related.forEach(hideQuestion);
             }
+        }
+        if ((jQuery("input[name='PaternalUncles']").val() == 0))
+        {
+            var  related = ['PaternalCousinsBool'];
+            related.forEach(showQuestion);
+
         }
 
     });
     //لأي ابن العم
-    jQuery('#PaternalCousinsBool').on('switchChange.bootstrapSwitch',function (e,data){forallhajb();forall_(data,'PaternalCousins');});
-    jQuery('#MaternalBrothersBool').on('switchChange.bootstrapSwitch',function (e,data){forallhajb();forall_(data,'MaternalBrothers');});
-    jQuery('#MaternalSistersBool').on('switchChange.bootstrapSwitch',function (e,data){  forallhajb();forall_(data,'MaternalSisters');});
+    jQuery('#PaternalCousinsBool').on('switchChange.bootstrapSwitch',function (e,data){forall_(data,'PaternalCousins');});
+    jQuery('#MaternalBrothersBool').on('switchChange.bootstrapSwitch',function (e,data){forall_(data,'MaternalBrothers');});
+    jQuery('#MaternalSistersBool').on('switchChange.bootstrapSwitch',function (e,data){ forall_(data,'MaternalSisters');});
     jQuery('#GrandsonsBool').on('switchChange.bootstrapSwitch',function (e,data){
-        forallhajb();
+
         forall_(data,'Grandsons');
     } );
     /*
@@ -945,9 +991,7 @@ variables();
         }
     } )*/
     /*
-    jQuery('#GrandDaughtersBool').on('switchChange.bootstrapSwitch',function (e,data){
-        forallhajb();
-        forall_(data,'Granddaughters')});
+
 
     //الأخوة الأشقاء و FullBrothers ,  FullBrothersBool
 
