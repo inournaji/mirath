@@ -51,7 +51,7 @@ function  variables() {
      fullCousinsBool = jQuery('#FullCousinsBool .bootstrap-switch').hasClass('bootstrap-switch-on');
      paternalUnclesBool = jQuery('#PaternalUnclesBool .bootstrap-switch').hasClass('bootstrap-switch-on');
      paternalNephewsBool = jQuery('#PaternalNephewsBool .bootstrap-switch').hasClass('bootstrap-switch-on');
-     paternalCousinsBool = jQuery('#PaternalCousinsBool .bootstrap-switch').hasClass('bootstrap-switch-on');
+      paternalCousinsBool = jQuery('#PaternalCousinsBool .bootstrap-switch').hasClass('bootstrap-switch-on');
 }
 function showQuestion(item,index){
     var question = jQuery("#"+item)
@@ -144,16 +144,17 @@ function fathermother(father,mother) {
     }
 
 function forallhajb() {
+    variables() ;
     if(father){fatherhajb()}
-    if(daughtersBool){daughterhajb ()}
-    if(sonsBool){sonhajb ()}
-    if(fullBrothersBool){fulbrohajb ()}
-    if(fullSistersBool){fullsishajb ()}
-    if(fullNephewsBool){fullbrosonhajb ()}
-    if(paternalNephewsBool){parbrosonhajb ()}
-    if(fullUnclesBool){fullunclehajb ()}
-    if(paternalUnclesBool){parunclehajb ()}
-    if(fullCousinsBool){fullunclesonhajb ()}
+    if(daughtersBool && (jQuery("input[name='Daughters']").val()>0)){daughterhajb ()}
+    if(sonsBool && (jQuery("input[name='Sons']").val()>0)){sonhajb ()}
+    if(fullBrothersBool && (jQuery("input[name='FullBrothers']").val()>0)){fulbrohajb ()}
+    if(fullSistersBool && (jQuery("input[name='FullSisters']").val()>0)){fullsishajb ()}
+    if(fullNephewsBool && (jQuery("input[name='FullNephewsBool']").val()>0)){fullbrosonhajb ()}
+    if(paternalNephewsBool && (jQuery("input[name='PaternalNephewsBool']").val()>0)){parbrosonhajb ()}
+    if(fullUnclesBool && (jQuery("input[name='FullUnclesBool']").val()>0)){fullunclehajb ()}
+    if(paternalUnclesBool && (jQuery("input[name='PaternalUnclesBool']").val()>0)){parunclehajb ()}
+    if(fullCousinsBool && (jQuery("input[name='FullCousinsBool']").val()>0)){fullunclesonhajb ()}
 }
 function fatherhajb ()
 {
@@ -699,49 +700,41 @@ variables();
 // الابناء الذكور
     jQuery('#SonsBool').on('switchChange.bootstrapSwitch',function (e,data) {
         forallhajb();
-        var related = ['Sons','GrandsonsBool','GrandDaughtersBool'];
-        if(jQuery('#SonsBool .bootstrap-switch').hasClass('bootstrap-switch-on')) {
+        var related = ['Sons','FullBrothersBool','FullSistersBool','GrandDaughtersBool','MaternalBrothersBool','MaternalSistersBool'];
+        if(data) {
             related.forEach(showQuestion);
         }
         if(!data) {
+            related =['FullBrothersBool','FullSistersBool','MaternalBrothersBool','MaternalSistersBool'];
+            related.forEach(showQuestion);
             if(!jQuery('#Sons').hasClass('hidden'))
             {
+                related = ['Sons','GrandsonsBool','GrandDaughtersBool'];
                 related.forEach(hideQuestion);
-                related =['FullBrothersBool'];
-                related.forEach(showQuestion);
-            }
-        }
-        if(jQuery('#FullBrothers .bootstrap-switch').hasClass('bootstrap-switch-on') && data)
-        {
-            forallhajb();
-            if(!jQuery('#GrandsonsBool').hasClass('hidden'))
-            {
-                related =['GrandsonsBool']
-                related.forEach(hideQuestion);
-
             }
 
         }
-
-
     });
     jQuery("input[name='Sons']").change(function () {
         forallhajb();
         if ((jQuery("input[name='Sons']").val() > 0))
         {
             if(!jQuery('#Sons').hasClass('hidden')){
-                var  related = ['GrandsonsBool','GrandDaughtersBool'];
-                related.forEach(hideQuestion);
+               forallhajb();
             }
+
         }
         if ((jQuery("input[name='Sons']").val() == 0))
         {
-            var  related = ['GrandsonsBool','GrandDaughtersBool'];
+            var  related = ['FullBrothersBool','FullSistersBool','GrandDaughtersBool','MaternalBrothersBool','MaternalSistersBool'];
             related.forEach(showQuestion);
 
         }
     });
-
+    //بنت الابن
+    jQuery('#GrandDaughtersBool').on('switchChange.bootstrapSwitch',function (e,data){
+        forallhajb();
+        forall_(data,'Granddaughters')});
     function forall_ (first,second) {
 
         if(first) {
@@ -756,17 +749,188 @@ variables();
         }
 
     }
-
-    //البنات
-    jQuery('#DaughtersBool').on('switchChange.bootstrapSwitch',function (e,data) {
+    //الاح الشقيق
+    jQuery('#FullBrothersBool').on('switchChange.bootstrapSwitch',function (e,data)
+    {
         forallhajb();
-        forall_(data,'Daughters');
+        if(data)
+        {
+            forall_(data,'FullBrothers');
+          var  related =['PaternalBrothersBool','PaternalSistersBool','FullNephewsBool'];
+          related.forEach(showQuestion);
+        }
+        if(!data) {
+            related =['PaternalBrothersBool','PaternalSistersBool','GrandsonsBool'];
+            related.forEach(showQuestion);
+            if(!jQuery('#FullBrothers').hasClass('hidden'))
+            {
+                related = ['FullBrothers'];
+                related.forEach(hideQuestion);
+            }if(!jQuery('#FullNephewsBool').hasClass('hidden'))
+            {
+                related = ['FullNephewsBool'];
+                related.forEach(hideQuestion);
+            }
+
+        }
+        if(jQuery('#FullBrothers .bootstrap-switch').hasClass('bootstrap-switch-on') && data)
+        {
+            forallhajb();
+            if(!jQuery('#GrandsonsBool').hasClass('hidden'))
+            {
+                related =['GrandsonsBool']
+                related.forEach(hideQuestion);
+
+            }
+
+        }
     });
-    //ابن الابن
+    jQuery("input[name='FullBrothers']").change(function () {
+        forallhajb();
+        if ((jQuery("input[name='FullBrothers']").val() > 0))
+        {
+            if(!jQuery('#FullBrothers').hasClass('hidden')){
+                forallhajb();
+            }
+        }
+        if ((jQuery("input[name='FullBrothers']").val() == 0))
+        {
+            var  related = ['GrandsonsBool','PaternalBrothersBool','PaternalSistersBool','FullNephewsBool'];
+            related.forEach(showQuestion);
+
+        }
+    });
+    //لاأخت الشقيقة
+    jQuery('#FullSistersBool').on('switchChange.bootstrapSwitch',function (e,data)
+    {
+        forallhajb();
+        forall_(data,'FullSisters');
+    });
+    //ابن الأخ
+    jQuery('#FullNephewsBool').on('switchChange.bootstrapSwitch',function (e,data){forallhajb(); forall_(data,'FullNephews');});
+  //
+    //الأخ لأب
+    jQuery('#PaternalBrothersBool').on('switchChange.bootstrapSwitch',function (e,data)
+    {
+        forallhajb();
+        if(data)
+        {
+            forall_(data,'PaternalBrothers');
+            var  related =['PaternalNephewsBool'];
+            related.forEach(showQuestion);
+        }
+        if(!data) {
+            var related =['FullUnclesBool'];
+            related.forEach(showQuestion);
+            if(!jQuery('#PaternalBrothers').hasClass('hidden'))
+            {
+                related = ['PaternalBrothers'];
+                related.forEach(hideQuestion);
+            }
+            if(!jQuery('#PaternalNephewsBool').hasClass('hidden'))
+            {
+                related = ['PaternalNephewsBool'];
+                related.forEach(hideQuestion);
+            }
+        }
+
+    });
+    jQuery("input[name='PaternalBrothers']").change(function () {
+        forallhajb();
+        if ((jQuery("input[name='PaternalBrothers']").val() > 0))
+        {
+            if(!jQuery('#PaternalBrothers').hasClass('hidden')){
+                forallhajb();
+            }
+        }
+        if ((jQuery("input[name='PaternalBrothers']").val() == 0))
+        {
+            var  related = ['PaternalNephewsBool'];
+            related.forEach(showQuestion);
+
+        }
+    });
+    //الأخت لأب
+    jQuery('#PaternalSistersBool').on('switchChange.bootstrapSwitch',function (e,data){forallhajb();forall_(data,'PaternalSisters');});
+    //ابن الأخ الشقيق
+    jQuery('#PaternalNephewsBool').on('switchChange.bootstrapSwitch',function (e,data){forallhajb();forall_(data,'PaternalNephews');});
+    //العم
+    jQuery('#FullUnclesBool').on('switchChange.bootstrapSwitch',function (e,data)
+    {forallhajb();
+        if(data)
+        {
+            forall_(data,'FullUncles');
+            var  related =['FullCousinsBool'];
+            related.forEach(showQuestion);
+        }
+        if(!data) {
+            var related =['PaternalUnclesBool'];
+            related.forEach(showQuestion);
+            if(!jQuery('#FullUncles').hasClass('hidden'))
+            {
+                related = ['FullUncles'];
+                related.forEach(hideQuestion);
+            }
+            if(!jQuery('#PaternalUnclesBool').hasClass('hidden'))
+            {
+                related = ['PaternalUnclesBool'];
+                related.forEach(hideQuestion);
+            }
+        }});
+    jQuery("input[name='FullUncles']").change(function () {
+        forallhajb();
+        if ((jQuery("input[name='FullUncles']").val() > 0))
+        {
+            if(!jQuery('#FullUncles').hasClass('hidden')){
+                forallhajb();
+            }
+        }
+        if ((jQuery("input[name='FullUncles']").val() == 0))
+        {
+            var  related = ['PaternalUnclesBool'];
+            related.forEach(showQuestion);
+
+        }
+    });
+    //ابن العم
+    jQuery('#FullCousinsBool').on('switchChange.bootstrapSwitch',function (e,data){forallhajb();forall_(data,'FullCousins');});
+    //العم لأب
+    jQuery('#FullUnclesBool').on('switchChange.bootstrapSwitch',function (e,data)
+    {forallhajb();
+        forall_(data,'PaternalUncles');
+    if(data)
+        {
+            var  related =['PaternalCousinsBool'];
+            related.forEach(showQuestion);
+        }
+
+        });
+    jQuery("input[name='PaternalUncles']").change(function () {
+        forallhajb();
+        if ((jQuery("input[name='PaternalUncles']").val() > 0))
+        {
+            if(!jQuery('#PaternalUncles').hasClass('hidden')){
+                forallhajb();
+            }
+        }
+
+    });
+    //لأي ابن العم
+    jQuery('#PaternalCousinsBool').on('switchChange.bootstrapSwitch',function (e,data){forallhajb();forall_(data,'PaternalCousins');});
+    jQuery('#MaternalBrothersBool').on('switchChange.bootstrapSwitch',function (e,data){forallhajb();forall_(data,'MaternalBrothers');});
+    jQuery('#MaternalSistersBool').on('switchChange.bootstrapSwitch',function (e,data){  forallhajb();forall_(data,'MaternalSisters');});
     jQuery('#GrandsonsBool').on('switchChange.bootstrapSwitch',function (e,data){
         forallhajb();
         forall_(data,'Grandsons');
     } );
+    /*
+        //البنات
+        jQuery('#DaughtersBool').on('switchChange.bootstrapSwitch',function (e,data) {
+            forallhajb();
+            forall_(data,'Daughters');
+        });
+        //ابن الابن
+       */
     //بنت الابن
     /*jQuery('#GrandDaughtersBool').on('switchChange.bootstrapSwitch',function (e,data){
         if(data) {
@@ -780,37 +944,31 @@ variables();
             }
         }
     } )*/
+    /*
     jQuery('#GrandDaughtersBool').on('switchChange.bootstrapSwitch',function (e,data){
         forallhajb();
         forall_(data,'Granddaughters')});
 
     //الأخوة الأشقاء و FullBrothers ,  FullBrothersBool
-    jQuery('#FullBrothersBool').on('switchChange.bootstrapSwitch',function (e,data)
-    {
-        forallhajb();
-        forall_(data,'FullBrothers');
-    });
 
     //ابن الأخ الشقيق
     //FullNephewsBool , FullNephews
-    jQuery('#FullNephewsBool').on('switchChange.bootstrapSwitch',function (e,data){forallhajb(); forall_(data,'FullNephews');});
+
 
     //الأخ لأب
-    //PaternalBrothersBool , PaternalBrothersBool
-    jQuery('#PaternalBrothersBool').on('switchChange.bootstrapSwitch',function (e,data){forallhajb();forall_(data,'PaternalBrothers');});
+
 
     //الأخت لأب
-    //PaternalSistersBool, PaternalSisters
-    jQuery('#PaternalSistersBool').on('switchChange.bootstrapSwitch',function (e,data){forallhajb();forall_(data,'PaternalSisters');});
+
 
     //ابن الأخ لأب
     //PaternalNephewsBool ,PaternalNephews
-    jQuery('#PaternalNephewsBool').on('switchChange.bootstrapSwitch',function (e,data){forallhajb();forall_(data,'PaternalNephews');});
+
 
 
     //الأخ لأم
     //MaternalBrothersBool , MaternalBrothers
-    jQuery('#MaternalBrothersBool').on('switchChange.bootstrapSwitch',function (e,data){forallhajb();forall_(data,'MaternalBrothers');});
+
 
     //الأخت لأم
     //MaternalSistersBool ,MaternalSisters
@@ -818,16 +976,16 @@ variables();
 
     //العم
     //FullUnclesBool , FullUncles
-    jQuery('#FullUnclesBool').on('switchChange.bootstrapSwitch',function (e,data){forallhajb(); forall_(data,'FullUncles');});
+
     //ابن العم
     //FullCousins ,  FullCousinsBool
     jQuery('#FullCousinsBool').on('switchChange.bootstrapSwitch',function (e,data){forallhajb();forall_(data,'FullCousins');});
 
     //العم لأب
     //PaternalUnclesBool , PaternalUncles
-    jQuery('#FullBrothersBool').on('switchChange.bootstrapSwitch',function (e,data){forallhajb();forall_(data,'FullBrothers');});
+
     //ابن العم لأب
     //PaternalCousinsBool , PaternalCousins
-    jQuery('#PaternalCousinsBool').on('switchChange.bootstrapSwitch',function (e,data){forallhajb();forall_(data,'PaternalCousins');});
 
+*/
     });
