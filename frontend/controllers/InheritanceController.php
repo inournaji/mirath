@@ -42,6 +42,7 @@ class InheritanceController extends Controller
         if(Yii::$app->request->isPost){
             $request = Yii::$app->request;
             $model = new Inheritance();
+
             $post = array_change_key_case($request->post(),CASE_LOWER);
             if( $model->load($post,'') &&  $model->validate()){
                 $clips_object = $model->toClips();

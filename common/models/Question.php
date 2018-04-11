@@ -193,11 +193,15 @@ class Question extends \yii\db\ActiveRecord
                         $html .= $row->desc?  '<div class="glyphicon glyphicon-info-sign"><span class=" tooltiptext">'.$row->desc.'</span></div>' :'';
                         $html .= '</div>';
                         $html .='<div class="answer choice col-md-7">';
-                            $first = true;
-                            foreach ($row->choices as $choice){
 
-                                $html .= Html::radio($row->symbol,$first,['label'=>$choice->text,'value'=>$row->default_answer]);
-                                $first = false;
+                            foreach ($row->choices as $choice){
+                                $checked = false;
+                                if ($row->default_answer == $choice->value){
+                                    $checked = true;
+
+                                }
+                                $html .= Html::radio($row->symbol,$checked,['label'=>$choice->text,'value'=>$choice->value]);
+                                $checked = false;
                             }
                         $html .='</div>';
                         break;

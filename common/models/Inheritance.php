@@ -89,7 +89,7 @@ class Inheritance extends \yii\db\ActiveRecord
         return [
             [['fulluncles','paternaluncles','paternalgrandmother','maternalgrandmother','fullbrothers','fullsisters','paternalbrothers','paternalsisters','maternalbrothers','maternalsisters','fullnephews','paternalnephews','fullpaternaluncles','paternalpaternaluncles','fullcousins','paternalcousins'],'safe'],
             [['gender', 'status','husband', 'wives', 'sons','daughters', 'grandsons','granddaughters', 'father', 'mother', 'grandfather', 'paternal_grandmother', 'maternal_grandmother', 'full_brothers', 'full_sisters', 'paternal_brothers', 'paternal_sisters', 'maternal_brothers', 'maternal_sisters', 'full_nephews', 'paternal_nephews', 'fulluncles','paternaluncles',  'full_cousins', 'paternalcousins','fulluncles','paternaluncles','paternalgrandmother','maternalgrandmother','fullbrothers','fullsisters','paternalbrothers','paternalsisters','maternalbrothers','maternalsisters','fullnephews','paternalnephews','fullpaternaluncles','paternalpaternaluncles','fullcousins'], 'integer'],
-            [['gender', 'status','husband', 'wives', 'sons','daughters', 'grandsons','granddaughters', 'father', 'mother', 'grandfather','fulluncles','paternaluncles','paternalgrandmother','maternalgrandmother','fullbrothers','fullsisters','paternalbrothers','paternalsisters','maternalbrothers','maternalsisters','fullnephews','paternalnephews','fullcousins','paternalcousins'], 'required'],
+           // [['gender', 'status','husband', 'wives', 'sons','daughters', 'grandsons','granddaughters', 'father', 'mother', 'grandfather','fulluncles','paternaluncles','paternalgrandmother','maternalgrandmother','fullbrothers','fullsisters','paternalbrothers','paternalsisters','maternalbrothers','maternalsisters','fullnephews','paternalnephews','fullcousins','paternalcousins'], 'required'],
             [['gender', 'status','husband', 'wives', 'sons','daughters', 'grandsons','granddaughters', 'father', 'mother', 'grandfather','fulluncles','paternaluncles','paternalgrandmother','maternalgrandmother','fullbrothers','fullsisters','paternalbrothers','paternalsisters','maternalbrothers','maternalsisters','fullnephews','paternalnephews','fullpaternaluncles','paternalpaternaluncles','fullcousins','paternalcousins'],'default' ,'value' => 0],
         ];
     }
@@ -166,5 +166,13 @@ class Inheritance extends \yii\db\ActiveRecord
             'full_cousins' => Yii::t('app', 'Full Cousins'),
             'paternal_cousins' => Yii::t('app', 'Paternal Cousins'),
         ];
+    }
+    public function beforeValidate()
+    {
+        if($this->status == 1 ){
+            $this->husband =1;
+        }
+
+        return parent::beforeValidate();
     }
 }
