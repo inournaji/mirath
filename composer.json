@@ -35,7 +35,8 @@
         "amass/yii2-bootstrap-panel-widget": "dev-master",
         "dmstr/yii2-adminlte-asset": "2.*",
         "phpoffice/phpexcel": "dev-develop",
-        "yiisoft/yii2-jui": "~2.0.0"
+        "yiisoft/yii2-jui": "~2.0.0",
+        "2amigos/yii2-chartjs-widget": "~2.0"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

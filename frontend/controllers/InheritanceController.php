@@ -44,11 +44,15 @@ class InheritanceController extends Controller
             $model = new Inheritance();
 
             $post = array_change_key_case($request->post(),CASE_LOWER);
+            $model->load($post,'');
             if( $model->load($post,'') &&  $model->validate()){
                 $clips_object = $model->toClips();
                // return ClipsHelper::calculate($clips_object);
-                var_dump(ClipsHelper::calculate($clips_object));
+               $result =  ClipsHelper::calculate($clips_object);
 
+              return  $this->render('result',[
+                   'result' => $result,
+               ]);
             }
             else
                 return $model->getErrors();

@@ -4,6 +4,7 @@
 html,
 body {
     height: 100%;
+    font-family: Amiri;
 }
 html[dir="rtl"]{
     font-family: 'Amiri', serif;
@@ -211,6 +212,9 @@ btn-main-reversed:hover{
 }
 
 /*language switcher*/
+.site .language-switch-wrapper{
+    color: #fff;
+}
 .language-switch-wrapper{
     padding: 20px;
     display: inline-block;
@@ -339,3 +343,13 @@ html[dir=rtl] .answer label {
 }
 
 /* Question Form End */
+
+/* Result page start */
+
+.chart{
+    width: 50%;
+    display: block;
+    margin: auto;
+}
+
+/* Result page End */

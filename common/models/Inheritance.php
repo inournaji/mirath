@@ -4,6 +4,7 @@ namespace common\models;
 
 use Yii;
 use common\models\Question;
+use dosamigos\chartjs\ChartJs;
 /**
  * This is the model class for table "inheritance".
  *
@@ -89,16 +90,18 @@ class Inheritance extends \yii\db\ActiveRecord
         return [
             [['fulluncles','paternaluncles','paternalgrandmother','maternalgrandmother','fullbrothers','fullsisters','paternalbrothers','paternalsisters','maternalbrothers','maternalsisters','fullnephews','paternalnephews','fullpaternaluncles','paternalpaternaluncles','fullcousins','paternalcousins'],'safe'],
             [['gender', 'status','husband', 'wives', 'sons','daughters', 'grandsons','granddaughters', 'father', 'mother', 'grandfather', 'paternal_grandmother', 'maternal_grandmother', 'full_brothers', 'full_sisters', 'paternal_brothers', 'paternal_sisters', 'maternal_brothers', 'maternal_sisters', 'full_nephews', 'paternal_nephews', 'fulluncles','paternaluncles',  'full_cousins', 'paternalcousins','fulluncles','paternaluncles','paternalgrandmother','maternalgrandmother','fullbrothers','fullsisters','paternalbrothers','paternalsisters','maternalbrothers','maternalsisters','fullnephews','paternalnephews','fullpaternaluncles','paternalpaternaluncles','fullcousins'], 'integer'],
-           // [['gender', 'status','husband', 'wives', 'sons','daughters', 'grandsons','granddaughters', 'father', 'mother', 'grandfather','fulluncles','paternaluncles','paternalgrandmother','maternalgrandmother','fullbrothers','fullsisters','paternalbrothers','paternalsisters','maternalbrothers','maternalsisters','fullnephews','paternalnephews','fullcousins','paternalcousins'], 'required'],
             [['gender', 'status','husband', 'wives', 'sons','daughters', 'grandsons','granddaughters', 'father', 'mother', 'grandfather','fulluncles','paternaluncles','paternalgrandmother','maternalgrandmother','fullbrothers','fullsisters','paternalbrothers','paternalsisters','maternalbrothers','maternalsisters','fullnephews','paternalnephews','fullpaternaluncles','paternalpaternaluncles','fullcousins','paternalcousins'],'default' ,'value' => 0],
+            [['gender', 'status','husband', 'wives', 'sons','daughters', 'grandsons','granddaughters', 'father', 'mother', 'grandfather','fulluncles','paternaluncles','paternalgrandmother','maternalgrandmother','fullbrothers','fullsisters','paternalbrothers','paternalsisters','maternalbrothers','maternalsisters','fullnephews','paternalnephews','fullcousins','paternalcousins'], 'required'],
         ];
     }
 
     public  function toClips(){
+        if($this->status == 1 && $this->gender  == 2)
+            $this->husband = 1;
         $tmp ='(assert'.PHP_EOL;
         $tmp .='(dead'.PHP_EOL;
-        $tmp .='(Gender '.$this->gender.')'.PHP_EOL;
-        $tmp .='(Status '.$this->status.')'.PHP_EOL;
+       // $tmp .='(Gender '.$this->gender.')'.PHP_EOL;
+       // $tmp .='(Status '.$this->status.')'.PHP_EOL;
         $tmp .='(Husband '.$this->husband.')'.PHP_EOL;
         $tmp .='(Wives '.$this->wives.')'.PHP_EOL;
         $tmp .='(Sons '.$this->sons.')'.PHP_EOL;
@@ -174,5 +177,38 @@ class Inheritance extends \yii\db\ActiveRecord
         }
 
         return parent::beforeValidate();
+    }
+
+    public static function showResult(array $result){
+        $people = array();
+        $percentage = array();
+        foreach($result as $row){
+            $people [] = $row[0];
+            $percentage [] = intval($row[1]) ;
+        }
+
+        $chart = '<div class="chart">' . ChartJs::widget([
+                'type' => 'doughnut',
+                'options' => [
+                    'height' => '5',
+                    'width' => '5',
+                    'responsive' => true,
+
+
+                ],
+                'data' => [
+                    'labels' => $people,
+                    'datasets' => [
+                        [
+                            "label"=> Yii::t('app','Inheritance dispensation'),
+                            'data' => $percentage
+                        ],
+
+                    ]
+                ]
+            ]). '</div>';
+        $chart_title = '<h1>'.Yii::t('app','Inheritance dispensation').'</h1>';
+        return $chart_title.$chart;
+
     }
 }
