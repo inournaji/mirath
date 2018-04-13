@@ -100,8 +100,8 @@ class Inheritance extends \yii\db\ActiveRecord
             $this->husband = 1;
         $tmp ='(assert'.PHP_EOL;
         $tmp .='(dead'.PHP_EOL;
-       // $tmp .='(Gender '.$this->gender.')'.PHP_EOL;
-       // $tmp .='(Status '.$this->status.')'.PHP_EOL;
+        $tmp .='(Gender '.$this->gender.')'.PHP_EOL;
+        $tmp .='(Status '.$this->status.')'.PHP_EOL;
         $tmp .='(Husband '.$this->husband.')'.PHP_EOL;
         $tmp .='(Wives '.$this->wives.')'.PHP_EOL;
         $tmp .='(Sons '.$this->sons.')'.PHP_EOL;
@@ -188,7 +188,7 @@ class Inheritance extends \yii\db\ActiveRecord
         }
 
         $chart = '<div class="chart">' . ChartJs::widget([
-                'type' => 'doughnut',
+                'type' => 'polarArea',
                 'options' => [
                     'height' => '5',
                     'width' => '5',
@@ -201,14 +201,43 @@ class Inheritance extends \yii\db\ActiveRecord
                     'datasets' => [
                         [
                             "label"=> Yii::t('app','Inheritance dispensation'),
-                            'data' => $percentage
+                            'data' => $percentage,
+                           'backgroundColor'=> Inheritance::chartColors(),
                         ],
-
                     ]
                 ]
             ]). '</div>';
         $chart_title = '<h1>'.Yii::t('app','Inheritance dispensation').'</h1>';
         return $chart_title.$chart;
 
+    }
+
+    public static function chartColors(){
+            $tmp = [
+            'rgba(124, 77, 255, 0.9)',
+            'rgba(180, 124, 255, 0.9)',
+            'rgba(63, 29, 203, 0.9)',
+            'rgba(171, 71, 188, 0.9)',
+            'rgba(223, 120, 239, 0.9)',
+            'rgba(121, 14, 139, 0.9)',
+            'rgba(142, 153, 243, 0.9)',
+            'rgba(38, 65, 143, 0.9)',
+            'rgba(92, 107, 192, 0.9)',
+            'rgba(0, 61, 0, 0.9)',
+            'rgba(98, 151, 73, 0.9)',
+            'rgba(51, 105, 30, 0.9)',
+            'rgba(69, 90, 100, 0.9)',
+            'rgba(28, 49, 58, 0.9)',
+            'rgba(113, 135, 146, 0.9)',
+        ];
+         shuffle($tmp);
+         return $tmp;
+    }
+    public static function t(array $result){
+        foreach ($result as &$item) {
+            $item[0] = Yii::t('app', $item[0]);
+        }
+
+        return $result;
     }
 }

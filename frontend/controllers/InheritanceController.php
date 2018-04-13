@@ -49,6 +49,7 @@ class InheritanceController extends Controller
                 $clips_object = $model->toClips();
                // return ClipsHelper::calculate($clips_object);
                $result =  ClipsHelper::calculate($clips_object);
+               $result = Inheritance::t($result);
 
               return  $this->render('result',[
                    'result' => $result,
