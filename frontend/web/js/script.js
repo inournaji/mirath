@@ -55,12 +55,11 @@ function  variables() {
 }
 function showQuestion(item,index){
     var question = jQuery("#"+item)
-    jQuery(question).removeClass('hidden');
-    jQuery(question).appendTo('#formfields');
+        jQuery(question).removeClass('hidden');
 }
 function hideQuestion(item,index){
     var question = jQuery("#"+item)
-    jQuery(question).addClass('hidden');
+        jQuery(question).addClass('hidden');
 }
 function fathermother(father,mother) {
     if(father)
@@ -1032,4 +1031,13 @@ variables();
     //PaternalCousinsBool , PaternalCousins
 
 */
-    });
+
+    setTimeout(function() {
+        $('input[name="Father"]').trigger('click');
+        $('input[name="Father"]').trigger('click');
+    }, 1);
+});
+
+jQuery(document).load(function () {
+
+});

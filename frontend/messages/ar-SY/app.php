@@ -14,6 +14,8 @@ return[
     'No' => 'لا',
     'Continue' => 'متابعة',
     'Calculate' => 'احتساب',
+    'Inheritors' => 'الورثة',
+    'Percentage' => 'النسبة المئوية',
     'Inheritance dispensation' => 'توزيع التركة',
     'The most accurate inheritance calculator based on the Islamic law' => 'الخدمة الأكثر دقة لحساب التركة حسب الشريعة الإسلامية',
     'Husband' => 'الزوج',

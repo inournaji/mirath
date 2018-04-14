@@ -22,6 +22,7 @@ AppAsset::register($this);
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
+
 </head>
 <body class="<?=isset($this->context->bodyClass)?$this->context->bodyClass:''?>">
 <?php $this->beginBody() ?>
