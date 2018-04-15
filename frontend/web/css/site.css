@@ -128,6 +128,9 @@ a.desc:after {
 
 /*Custom style start*/
 /*General start*/
+nav {
+    display: none;
+}
 .lead{
     color: #fff;
     font-family: Amiri;
@@ -351,5 +354,29 @@ html[dir=rtl] .answer label {
     display: block;
     margin: auto;
 }
+.inheritance-result.jumbotron h1{
+    padding: 0 15px 25px 15px;
+}
+.inheritance-result.jumbotron{
+    overflow: auto;
+}
+.inheritance-col.table-wrapper{
+    padding-top: 30px;
+}
+
+.inheritance-col.table-wrapper thead{
+    font-size: 25px;
+    background-color: #212529;
+    color: #fefefe;
+
+}
+.inheritance-col.table-wrapper th{
+    text-align: center;
+}
+.inheritance-col.table-wrapper tbody{
+    color: #212529;
+    background-color: #fefefe;
+}
+
 
 /* Result page End */

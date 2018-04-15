@@ -149,11 +149,18 @@ class Question extends \yii\db\ActiveRecord
 
     public function afterFind()
     {
-        //$this->children = Question::find()->where(['parent' => $this->id])->all();
         if($this->parent == null){
             $this->visible = true;
         }
-        //$this->parent = true;
+        if(Yii::$app->language == 'en-US'){
+            if(!empty($this->question_en))
+                $this->question = $this->question_en;
+            if(!empty($this->desc_en))
+                $this->desc = $this->desc_en;
+
+        }
+        parent::afterFind();
+
     }
 
     public static function render(array $models){
@@ -172,8 +179,6 @@ class Question extends \yii\db\ActiveRecord
                         $html .= SwitchInput::widget([
                             'name' => $row->symbol,
                             'value' => $row->default_answer,
-                            'tristate' => true,
-                            'indeterminateValue' => -1,
                             'pluginOptions' => [
                                 'labelText'=>'<i class="glyphicon glyphicon-question-sign"></i>',
                                 'size' => 'large',

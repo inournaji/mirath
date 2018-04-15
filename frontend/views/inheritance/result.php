@@ -13,10 +13,14 @@ use dosamigos\chartjs\ChartJs;
 /* @var $result  */
 ?>
 <div class="inheritance-result jumbotron" >
+    <h1><?= Yii::t('app', 'Inheritance dispensation') ?></h1>
+        <div class="inheritance-col chart-wrapper col-lg-8 col-lg-offset-2 table-responsive">
     <?php
-    $html = Inheritance::showResult($result);
+    $html = Inheritance::showResultChart($result);
     echo $html;
-
     ?>
+    </div>
+    <div class="inheritance-col table-wrapper col-lg-8 col-lg-offset-2">
+        <?=Inheritance::showResultTable($result) ?>
 </div>
 

@@ -58,4 +58,14 @@ class Choice extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Question::className(), ['id' => 'question_id']);
     }
+
+    public function afterFind()
+    {
+        if(Yii::$app->language == 'en-US'){
+            if(!empty($this->text_en))
+                $this->text = $this->text_en;
+        }
+
+            parent::afterFind();
+    }
 }

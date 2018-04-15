@@ -100,8 +100,8 @@ class Inheritance extends \yii\db\ActiveRecord
             $this->husband = 1;
         $tmp ='(assert'.PHP_EOL;
         $tmp .='(dead'.PHP_EOL;
-        $tmp .='(Gender '.$this->gender.')'.PHP_EOL;
-        $tmp .='(Status '.$this->status.')'.PHP_EOL;
+       // $tmp .='(Gender '.$this->gender.')'.PHP_EOL;
+        //$tmp .='(Status '.$this->status.')'.PHP_EOL;
         $tmp .='(Husband '.$this->husband.')'.PHP_EOL;
         $tmp .='(Wives '.$this->wives.')'.PHP_EOL;
         $tmp .='(Sons '.$this->sons.')'.PHP_EOL;
@@ -179,7 +179,25 @@ class Inheritance extends \yii\db\ActiveRecord
         return parent::beforeValidate();
     }
 
-    public static function showResult(array $result){
+    public static function showResultTable(array $result){
+
+        $html ='<table class="table table-responsive table-bordered table-hover">';
+        $html .='<thead>';
+        $html .='<tr>';
+        $html .='<th>'.Yii::t('app','Inheritors').'</th>';
+        $html .='<th>'.Yii::t('app','Percentage').'</th>';
+        $html .='</tr></thead><tbody>';
+
+        foreach ($result as $row){
+            $html .= '<tr>';
+            $html .= '<td>'. $row[0] .'</td>';
+            $html .= '<td>'.$row[1].'</td>';
+            $html .= '</tr>';
+        }
+        $html.='</tbody></table>';
+        return $html;
+    }
+    public static function showResultChart(array $result){
         $people = array();
         $percentage = array();
         foreach($result as $row){
@@ -207,7 +225,7 @@ class Inheritance extends \yii\db\ActiveRecord
                     ]
                 ]
             ]). '</div>';
-        $chart_title = '<h1>'.Yii::t('app','Inheritance dispensation').'</h1>';
+        $chart_title ='';// '<h1>'.Yii::t('app','Inheritance dispensation').'</h1>';
         return $chart_title.$chart;
 
     }

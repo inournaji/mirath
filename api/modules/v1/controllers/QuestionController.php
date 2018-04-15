@@ -16,6 +16,7 @@ use yii\rest\ActiveController;
 use yii\filters\auth\QueryParamAuth;
 use yii\data\ActiveDataProvider;
 use yii\rest\Controller;
+use yii;
 
 
 /**
@@ -26,6 +27,10 @@ use yii\rest\Controller;
 class QuestionController extends Controller
 {
     public function actionIndex(){
+        if(!is_null(Yii::$app->request->headers->get('language'))&& Yii::$app->request->headers->get('language') == 'ar' )
+            \Yii::$app->language = 'ar-SY';
+        else
+            \Yii::$app->language = 'en-US';
         $activeData = new ActiveDataProvider([
             'query' => Question::find()->with('choices')->with('type'),
             'pagination'=>false,

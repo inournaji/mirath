@@ -53,6 +53,7 @@ class InheritanceController extends Controller
 
               return  $this->render('result',[
                    'result' => $result,
+                   'model' => $model,
                ]);
             }
             else
