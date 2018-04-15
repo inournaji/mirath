@@ -232,6 +232,9 @@ btn-main-reversed:hover{
 }
 
 /* Question Form Start */
+.answer.choice{
+    text-align: right;
+}
 .question-wrapper {
     border-bottom: 1px solid #d3cccc;
     padding: 10px 0px;}
