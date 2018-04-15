@@ -49,7 +49,8 @@ class QuestionController extends Controller
      * @return mixed
      */
     public function actionIndex()
-    {    
+    {
+        Yii::$app->language = 'ar-SY';
         $searchModel = new QuestionSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -66,7 +67,8 @@ class QuestionController extends Controller
      * @return mixed
      */
     public function actionView($id)
-    {   
+    {
+        Yii::$app->language = 'ar-SY';
         $request = Yii::$app->request;
         if($request->isAjax){
             Yii::$app->response->format = Response::FORMAT_JSON;
@@ -93,6 +95,8 @@ class QuestionController extends Controller
      */
     public function actionCreate()
     {
+        Yii::$app->language = 'ar-SY';
+
         $request = Yii::$app->request;
         $model = new Question();  
 
@@ -155,6 +159,8 @@ class QuestionController extends Controller
      */
     public function actionUpdate($id)
     {
+        Yii::$app->language = 'ar-SY';
+
         $request = Yii::$app->request;
         $model = $this->findModel($id);       
 
