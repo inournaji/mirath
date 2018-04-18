@@ -45,7 +45,6 @@ AppAsset::register($this);
             'items' => [
                     ['label' => 'Questions', 'url' => ['/question']],
                     ['label' => 'Question types', 'url' => ['/type']],
-                    ['label' => 'Question groups', 'url' => ['/questiongroup']],
                     ['label' => 'Choices', 'url' => ['/choice']],
                 ],
             ];
