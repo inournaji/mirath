@@ -300,7 +300,7 @@
 (MaternalSisters 0 )(FullNephews 0 )(PaternalNephews 0 )(FullUncles 0 )
 (PaternalUncles 0 )(FullCousins 0 )(PaternalCousins 0 ))(test (>= ?x 1)))
  =>
-(printout t "Sons,88.33" crlf "Father,16.67" crlf ));
+(printout t "Sons,83.33" crlf "Father,16.67" crlf ));
 
 ;-----------------------------------------------------------------
 ;------------- Son, Mother -----------------------------------
@@ -312,7 +312,7 @@
 (MaternalSisters 0 )(FullNephews 0 )(PaternalNephews 0 )(FullUncles 0 )
 (PaternalUncles 0 )(FullCousins 0 )(PaternalCousins 0 ))(test (>= ?x 1)))
  =>
-(printout t "Sons,88.33" crlf "Mother,16.67" crlf ));
+(printout t "Sons,83.33" crlf "Mother,16.67" crlf ));
 
 ;-----------------------------------------------------------------
 ;------------- Son ,Mother , Father -----------------------------------
@@ -336,7 +336,7 @@
 (MaternalSisters 0 )(FullNephews 0 )(PaternalNephews 0 )(FullUncles 0 )
 (PaternalUncles 0 )(FullCousins 0 )(PaternalCousins 0 ))(test (>= ?y 1))(test (>= ?x 1)))
  =>
-(printout t "Son," (* 100(/ (* ?x 2) (+ (* ?x 2) ?y))) crlf "Daughter,"(* 100(/ ?y (+ (* ?x 2) ?y))) crlf));
+(printout t "Son," (* 100 (/ (* ?x 2) (+ (* ?x 2) ?y))) crlf "Daughter,"(* 100 (/ ?y (+ (* ?x 2) ?y))) crlf));
 ;--------------------------------------------------
 ;-------Husband , Daughters , Father , Mother-
 ;--------------------------------------------------
@@ -358,7 +358,7 @@
 (MaternalSisters 0 )(FullNephews 0 )(PaternalNephews 0 )(FullUncles 0 )
 (PaternalUncles 0 )(FullCousins 0 )(PaternalCousins 0 )) (test (>= ?y 1))(test (>= ?x 1)))
  =>
-(printout t "Sons," (/ (* 10 ?x) (* 6 (+ (* 2 ?x) ?y))) crlf "Daughters," (/ (* 5 ?y) (* 6 (+ (* 2 ?x) ?y))) crlf "Father,16.67" crlf ));
+(printout t "Sons," (* 100 (/ (* 10 ?x) (* 6 (+ (* 2 ?x) ?y)))) crlf "Daughters," (* 100 (/ (* 5 ?y) (* 6 (+ (* 2 ?x) ?y)))) crlf "Father,16.67" crlf ));
 ;-----------------------------------------------------------------
 ;------------- Son , Daughter, Mother -----------------------------------
 ;-----------------------------------------------------------------
@@ -369,7 +369,7 @@
 (MaternalSisters 0 )(FullNephews 0 )(PaternalNephews 0 )(FullUncles 0 )
 (PaternalUncles 0 )(FullCousins 0 )(PaternalCousins 0 )) (test (>= ?y 1))(test (>= ?x 1)))
  =>
-(printout t "Sons," (/ (* 10 ?x) (* 6 (+ (* 2 ?x) ?y))) crlf "Daughters," (/ (* 5 ?y) (* 6 (+ (* 2 ?x) ?y))) crlf "Mother,16.67" crlf ));
+(printout t "Sons,"(* 100 (/ (* 10 ?x) (* 6 (+ (* 2 ?x) ?y)))) crlf "Daughters," (* 100(/ (* 5 ?y) (* 6 (+ (* 2 ?x) ?y)))) crlf "Mother,16.67" crlf ));
 
 ;-----------------------------------------------------------------
 ;------------- Son , Daughter , Father , mother -----------------------------------
@@ -382,7 +382,7 @@
 (MaternalSisters 0 )(FullNephews 0 )(PaternalNephews 0 )(FullUncles 0 )
 (PaternalUncles 0 )(FullCousins 0 )(PaternalCousins 0 )) (test (>= ?y 1))(test (>= ?x 1)))
  =>
-(printout t "Sons," (/ (* 8 ?x) (* 6 (+ (* 2 ?x) ?y))) crlf "Daughters," (/ (* 4 ?y) (* 6 (+ (* 2 ?x) ?y))) crlf "Father,16.67" crlf "Mother,16.67" crlf ));
+(printout t "Sons," (* 100(/ (* 8 ?x) (* 6 (+ (* 2 ?x) ?y)))) crlf "Daughters," (* 100(/ (* 4 ?y) (* 6 (+ (* 2 ?x) ?y)))) crlf "Father,16.67" crlf "Mother,16.67" crlf ));
 
 ;-----------------------------------------
 ;------- Wife -------------------------
@@ -430,7 +430,7 @@
 (MaternalSisters 0 )(FullNephews 0 )(PaternalNephews 0 )(FullUncles 0 )
 (PaternalUncles 0 )(FullCousins 0 )(PaternalCousins 0 ))(test (>= ?y 1))(test (>= ?x 1)))
  =>
-(printout t "Wives,12.5" crlf "Sons," (/ (* 14 ?x) (* 8 (+ (* 2 ?x) ?y))) crlf "Daughters," (/ (* 7 ?y) (* 8 (+ (* 2 ?x) ?y))) crlf ));
+(printout t "Wives,12.5" crlf "Sons," (* 100(/ (* 14 ?x) (* 8 (+ (* 2 ?x) ?y)))) crlf "Daughters," (* 100(/ (* 7 ?y) (* 8 (+ (* 2 ?x) ?y)))) crlf ));
 
 ;-----------------------------------------
 ;-------Wife, Sons, Father ------------
@@ -796,3 +796,330 @@
 (PaternalUncles 0 )(FullCousins 0 )(PaternalCousins 0 ))(test (>= ?x 1))(test (>= ?y 2)))
  =>
 (printout t "Wives,12.5" crlf "Daughters,66.67" crlf "FullBrothers,20.83" crlf ));
+
+;---------------- FSis ,  -------------------------------------------------
+(defrule rule-64( and (dead  (Husband 0 )(Wives 0 )(Sons 0 )(Daughters 0 )
+(Grandsons 0 )(Granddaughters 0 )(Father 0 )(Mother 0 )
+(Grandfather 0 )(PaternalGrandmother 0 )(MaternalGrandmother 0 )(FullBrothers 0 )
+(FullSisters ?z )(PaternalBrothers 0 )(PaternalSisters 0 )(MaternalBrothers 0 )
+(MaternalSisters 0 )(FullNephews 0 )(PaternalNephews 0 )(FullUncles 0 )
+(PaternalUncles 0 )(FullCousins 0 )(PaternalCousins 0 ))(test (>= ?z 1)))
+ =>
+(printout t "FullSisters,100" crlf ));
+
+;--------------- FSis , Husband--------------------------------------------------
+(defrule rule-65 (dead (Husband 1 )(Wives 0 )(Sons 0 )(Daughters 0 )
+(Grandsons 0 )(Granddaughters 0 )(Father 0 )(Mother 0 )
+(Grandfather 0 )(PaternalGrandmother 0 )(MaternalGrandmother 0 )(FullBrothers 0 )
+(FullSisters 1 )(PaternalBrothers 0 )(PaternalSisters 0 )(MaternalBrothers 0 )
+(MaternalSisters 0 )(FullNephews 0 )(PaternalNephews 0 )(FullUncles 0 )
+(PaternalUncles 0 )(FullCousins 0 )(PaternalCousins 0 ))
+ =>
+(printout t "Husband,50" crlf "FullSisters,50" crlf ));
+
+;--------------- FSis () , Husband--------------------------------------------------
+(defrule rule-216 ( and (dead  (Husband 1 )(Wives 0 )(Sons 0 )(Daughters 0 )
+(Grandsons 0 )(Granddaughters 0 )(Father 0 )(Mother 0 )
+(Grandfather 0 )(PaternalGrandmother 0 )(MaternalGrandmother 0 )(FullBrothers 0 )
+(FullSisters ?z )(PaternalBrothers 0 )(PaternalSisters 0 )(MaternalBrothers 0 )
+(MaternalSisters 0 )(FullNephews 0 )(PaternalNephews 0 )(FullUncles 0 )
+(PaternalUncles 0 )(FullCousins 0 )(PaternalCousins 0 ))(test (>= ?z 2)))
+ =>
+(printout t "Husband,42.86" crlf "FullSisters,57.14" crlf ));
+
+;----------------FSis , Mother ------------------------------------------------
+(defrule rule-66 ( and (dead  (Husband 0 )(Wives 0 )(Sons 0 )(Daughters 0 )
+(Grandsons 0 )(Granddaughters 0 )(Father 0 )(Mother 1 )
+(Grandfather 0 )(PaternalGrandmother 0 )(MaternalGrandmother 0 )(FullBrothers 0 )
+(FullSisters ?z )(PaternalBrothers 0 )(PaternalSisters 0 )(MaternalBrothers 0 )
+(MaternalSisters 0 )(FullNephews 0 )(PaternalNephews 0 )(FullUncles 0 )
+(PaternalUncles 0 )(FullCousins 0 )(PaternalCousins 0 ))(test (>= ?z 1)))
+ =>
+(printout t "Mother,20" crlf "FullSisters,80" crlf ));
+;---------------- FSis , Daughter-------------------------------------------------
+(defrule rule-67 ( and (dead  (Husband 0 )(Wives 0 )(Sons 0 )(Daughters 1 )
+(Grandsons 0 )(Granddaughters 0 )(Father 0 )(Mother 0 )
+(Grandfather 0 )(PaternalGrandmother 0 )(MaternalGrandmother 0 )(FullBrothers 0 )
+(FullSisters ?z )(PaternalBrothers 0 )(PaternalSisters 0 )(MaternalBrothers 0 )
+(MaternalSisters 0 )(FullNephews 0 )(PaternalNephews 0 )(FullUncles 0 )
+(PaternalUncles 0 )(FullCousins 0 )(PaternalCousins 0 ))(test (>= ?z 1)))
+ =>
+(printout t "Daughters,50" crlf "FullSisters,50" crlf ));
+
+;----------------- FSis , Daughter(2) ------------------------------------------------
+(defrule rule-68 ( and (dead  (Husband 0 )(Wives 0 )(Sons 0 )(Daughters ?x )
+(Grandsons 0 )(Granddaughters 0 )(Father 0 )(Mother 0 )
+(Grandfather 0 )(PaternalGrandmother 0 )(MaternalGrandmother 0 )(FullBrothers 0 )
+(FullSisters ?z )(PaternalBrothers 0 )(PaternalSisters 0 )(MaternalBrothers 0 )
+(MaternalSisters 0 )(FullNephews 0 )(PaternalNephews 0 )(FullUncles 0 )
+(PaternalUncles 0 )(FullCousins 0 )(PaternalCousins 0 ))(test (>= ?z 1))(test (>= ?x 2)))
+ =>
+(printout t "Daughters,66.67" crlf "FullSisters,33.33" crlf ));
+
+;------------------FSis , Husband , Mother-----------------------------------------------
+(defrule rule-69 (dead (Husband 1 )(Wives 0 )(Sons 0 )(Daughters 0 )
+(Grandsons 0 )(Granddaughters 0 )(Father 0 )(Mother 1 )
+(Grandfather 0 )(PaternalGrandmother 0 )(MaternalGrandmother 0 )(FullBrothers 0 )
+(FullSisters 1 )(PaternalBrothers 0 )(PaternalSisters 0 )(MaternalBrothers 0 )
+(MaternalSisters 0 )(FullNephews 0 )(PaternalNephews 0 )(FullUncles 0 )
+(PaternalUncles 0 )(FullCousins 0 )(PaternalCousins 0 ))
+ =>
+(printout t "Husband,37.5" crlf "Mother,25" crlf "FullSisters,37.5" crlf ));
+
+;------------------FSis () , Husband , Mother-----------------------------------------------
+(defrule rule-73 ( and (dead  (Husband 1 )(Wives 0 )(Sons 0 )(Daughters 0 )
+(Grandsons 0 )(Granddaughters 0 )(Father 0 )(Mother 1 )
+(Grandfather 0 )(PaternalGrandmother 0 )(MaternalGrandmother 0 )(FullBrothers 0 )
+(FullSisters ?z )(PaternalBrothers 0 )(PaternalSisters 0 )(MaternalBrothers 0 )
+(MaternalSisters 0 )(FullNephews 0 )(PaternalNephews 0 )(FullUncles 0 )
+(PaternalUncles 0 )(FullCousins 0 )(PaternalCousins 0 ))(test (>= ?z 2)))
+ =>
+(printout t "Husband,37.5" crlf "Mother,12.5" crlf "FullSisters,50" crlf ));
+
+;----------------- FSis , Husband , Daughter------------------------------------------------
+(defrule rule-70 ( and (dead  (Husband 1 )(Wives 0 )(Sons 0 )(Daughters 1 )
+(Grandsons 0 )(Granddaughters 0 )(Father 0 )(Mother 0 )
+(Grandfather 0 )(PaternalGrandmother 0 )(MaternalGrandmother 0 )(FullBrothers 0 )
+(FullSisters ?z )(PaternalBrothers 0 )(PaternalSisters 0 )(MaternalBrothers 0 )
+(MaternalSisters 0 )(FullNephews 0 )(PaternalNephews 0 )(FullUncles 0 )
+(PaternalUncles 0 )(FullCousins 0 )(PaternalCousins 0 ))(test (>= ?z 1)))
+ =>
+
+(printout t "Husband,25" crlf "Daughters,50" crlf "FullSisters,25" crlf ));
+
+;----------------- FSis , Husband , Daughter (2)------------------------------------------------
+(defrule rule-71 ( and (dead  (Husband 1 )(Wives 0 )(Sons 0 )(Daughters ?x )
+(Grandsons 0 )(Granddaughters 0 )(Father 0 )(Mother 0 )
+(Grandfather 0 )(PaternalGrandmother 0 )(MaternalGrandmother 0 )(FullBrothers 0 )
+(FullSisters ?z )(PaternalBrothers 0 )(PaternalSisters 0 )(MaternalBrothers 0 )
+(MaternalSisters 0 )(FullNephews 0 )(PaternalNephews 0 )(FullUncles 0 )
+(PaternalUncles 0 )(FullCousins 0 )(PaternalCousins 0 ))(test (>= ?z 1))(test (>= ?x 2)))
+ =>
+(printout t "Husband,25" crlf "Daughters,66.67" crlf "FullSisters,8.33" crlf ));
+
+;------------------FSis , Husband , Mother , Daughter-----------------------------------------------
+(defrule rule-72 ( and (dead  (Husband 1 )(Wives 0 )(Sons 0 )(Daughters 1 )
+(Grandsons 0 )(Granddaughters 0 )(Father 0 )(Mother 1 )
+(Grandfather 0 )(PaternalGrandmother 0 )(MaternalGrandmother 0 )(FullBrothers 0 )
+(FullSisters ?z )(PaternalBrothers 0 )(PaternalSisters 0 )(MaternalBrothers 0 )
+(MaternalSisters 0 )(FullNephews 0 )(PaternalNephews 0 )(FullUncles 0 )
+(PaternalUncles 0 )(FullCousins 0 )(PaternalCousins 0 ))(test (>= ?z 1)))
+ =>
+(printout t "Husband,25" crlf "Daughters,50" crlf "Mother,16.67" crlf "FullSisters,8.33" crlf ));
+
+;------------------FSis , Mother , Daughter-----------------------------------------------
+(defrule rule-74 ( and (dead  (Husband 0 )(Wives 0 )(Sons 0 )(Daughters 1)
+(Grandsons 0 )(Granddaughters 0 )(Father 0 )(Mother 1 )
+(Grandfather 0 )(PaternalGrandmother 0 )(MaternalGrandmother 0 )(FullBrothers 0 )
+(FullSisters ?z )(PaternalBrothers 0 )(PaternalSisters 0 )(MaternalBrothers 0 )
+(MaternalSisters 0 )(FullNephews 0 )(PaternalNephews 0 )(FullUncles 0 )
+(PaternalUncles 0 )(FullCousins 0 )(PaternalCousins 0 ))(test (>= ?z 1)))
+ =>
+(printout t "Daughters,50" crlf "Mother,16.67" crlf "FullSisters,33.33" crlf ));
+
+;------------------ FSis , Mother , Daughter (2)-----------------------------------------------
+(defrule rule-75 (and (dead  (Husband 0 )(Wives 0 )(Sons 0 )(Daughters ?x )
+(Grandsons 0 )(Granddaughters 0 )(Father 0 )(Mother 1 )
+(Grandfather 0 )(PaternalGrandmother 0 )(MaternalGrandmother 0 )(FullBrothers 0 )
+(FullSisters ?z )(PaternalBrothers 0 )(PaternalSisters 0 )(MaternalBrothers 0 )
+(MaternalSisters 0 )(FullNephews 0 )(PaternalNephews 0 )(FullUncles 0 )
+(PaternalUncles 0 )(FullCousins 0 )(PaternalCousins 0 ))(test (>= ?z 1))(test (>= ?x 2)))
+ =>
+(printout t "Daughters,66.67" crlf "Mother,16.67" crlf "FullSisters,16.67" crlf ));
+
+
+;--------------- FSis , Wife--------------------------------------------------
+(defrule rule-94 (and (dead (Husband 0 )(Wives 1 )(Sons 0 )(Daughters 0 )
+(Grandsons 0 )(Granddaughters 0 )(Father 0 )(Mother 0 )
+(Grandfather 0 )(PaternalGrandmother 0 )(MaternalGrandmother 0 )(FullBrothers 0 )
+(FullSisters ?z )(PaternalBrothers 0 )(PaternalSisters 0 )(MaternalBrothers 0 )
+(MaternalSisters 0 )(FullNephews 0 )(PaternalNephews 0 )(FullUncles 0 )
+(PaternalUncles 0 )(FullCousins 0 )(PaternalCousins 0 ))(test (>= ?z 1)))
+ =>
+(printout t "Wives,25" crlf "FullSisters,75" crlf ));
+
+;------------------FSis , Wife , Mother----------------------------------------
+
+(defrule rule-217(dead (Husband 0 )(Wives 1 )(Sons 0 )(Daughters 0 )
+(Grandsons 0 )(Granddaughters 0 )(Father 0 )(Mother 1 )
+(Grandfather 0 )(PaternalGrandmother 0 )(MaternalGrandmother 0 )(FullBrothers 0 )
+(FullSisters 1 )(PaternalBrothers 0 )(PaternalSisters 0 )(MaternalBrothers 0 )
+(MaternalSisters 0 )(FullNephews 0 )(PaternalNephews 0 )(FullUncles 0 )
+(PaternalUncles 0 )(FullCousins 0 )(PaternalCousins 0 ))
+ =>
+(printout t "Wives,23.08" crlf "Mother,30.77" crlf "FullSisters,46.15" crlf ));
+
+;------------------FSis(2) , Wife , Mother-----------------------------------------------
+
+(defrule rule-95 (and (dead (Husband 0 )(Wives 1 )(Sons 0 )(Daughters 0 )
+(Grandsons 0 )(Granddaughters 0 )(Father 0 )(Mother 1 )
+(Grandfather 0 )(PaternalGrandmother 0 )(MaternalGrandmother 0 )(FullBrothers 0 )
+(FullSisters ?z )(PaternalBrothers 0 )(PaternalSisters 0 )(MaternalBrothers 0 )
+(MaternalSisters 0 )(FullNephews 0 )(PaternalNephews 0 )(FullUncles 0 )
+(PaternalUncles 0 )(FullCousins 0 )(PaternalCousins 0 ))(test (>= ?z 2)))
+ =>
+(printout t "Wives,23.08" crlf "Mother,15.38" crlf "FullSisters,61.54" crlf ));
+
+;----------------- FSis , Wife , Daughter------------------------------------------------
+(defrule rule-96  (dead (Husband 0 )(Wives 1 )(Sons 0 )(Daughters 1 )
+(Grandsons 0 )(Granddaughters 0 )(Father 0 )(Mother 0 )
+(Grandfather 0 )(PaternalGrandmother 0 )(MaternalGrandmother 0 )(FullBrothers 0 )
+(FullSisters 1 )(PaternalBrothers 0 )(PaternalSisters 0 )(MaternalBrothers 0 )
+(MaternalSisters 0 )(FullNephews 0 )(PaternalNephews 0 )(FullUncles 0 )
+(PaternalUncles 0 )(FullCousins 0 )(PaternalCousins 0 ))
+ =>
+(printout t "Wives,12.5" crlf "Daughters,50" crlf "FullSisters,37.5" crlf ));
+
+
+
+
+
+;----------------- FSis , Wife , Daughter (2)------------------------------------------------
+(defrule rule-97 (and (dead (Husband 0 )(Wives 1 )(Sons 0 )(Daughters ?y )
+(Grandsons 0 )(Granddaughters 0 )(Father 0 )(Mother 0 )
+(Grandfather 0 )(PaternalGrandmother 0 )(MaternalGrandmother 0 )(FullBrothers 0 )
+(FullSisters 1 )(PaternalBrothers 0 )(PaternalSisters 0 )(MaternalBrothers 0 )
+(MaternalSisters 0 )(FullNephews 0 )(PaternalNephews 0 )(FullUncles 0 )
+(PaternalUncles 0 )(FullCousins 0 )(PaternalCousins 0 ))(test (>= ?y 2)))
+ =>
+(printout t "Wives,12.5" crlf "Daughters,66.67" crlf "FullSisters,20.83" crlf ));
+
+;------------------FSis , Wife , Mother , Daughter-----------------------------------------------
+(defrule rule-98 (dead (Husband 0 )(Wives 1 )(Sons 0 )(Daughters 1 )
+(Grandsons 0 )(Granddaughters 0 )(Father 0 )(Mother 1 )
+(Grandfather 0 )(PaternalGrandmother 0 )(MaternalGrandmother 0 )(FullBrothers 0 )
+(FullSisters 1 )(PaternalBrothers 0 )(PaternalSisters 0 )(MaternalBrothers 0 )
+(MaternalSisters 0 )(FullNephews 0 )(PaternalNephews 0 )(FullUncles 0 )
+(PaternalUncles 0 )(FullCousins 0 )(PaternalCousins 0 ))
+ =>
+(printout t "Wives,12.5" crlf "Daughters,50" crlf "Mother,16.67" crlf "FullSisters,20.83" crlf ));
+
+;------------------FSis , Wife , Mother , Daughter(2)-----------------------------------------------
+(defrule rule-99 (and (dead (Husband 0 )(Wives 1 )(Sons 0 )(Daughters ?y )
+(Grandsons 0 )(Granddaughters 0 )(Father 0 )(Mother 1 )
+(Grandfather 0 )(PaternalGrandmother 0 )(MaternalGrandmother 0 )(FullBrothers 0 )
+(FullSisters 1 )(PaternalBrothers 0 )(PaternalSisters 0 )(MaternalBrothers 0 )
+(MaternalSisters 0 )(FullNephews 0 )(PaternalNephews 0 )(FullUncles 0 )
+(PaternalUncles 0 )(FullCousins 0 )(PaternalCousins 0 ))(test (>= ?y 2)))
+ =>
+(printout t "Wives,12.5" crlf "Daughters,66.67" crlf "Mother,16.67" crlf "FullSisters,4.17" crlf ));
+
+;--------------- FSis , Wife , FBro--------------------------------------------------
+(defrule rule-100 (dead (Husband 0 )(Wives 1 )(Sons 0 )(Daughters 0 )
+(Grandsons 0 )(Granddaughters 0 )(Father 0 )(Mother 0 )
+(Grandfather 0 )(PaternalGrandmother 0 )(MaternalGrandmother 0 )(FullBrothers 1 )
+(FullSisters 1 )(PaternalBrothers 0 )(PaternalSisters 0 )(MaternalBrothers 0 )
+(MaternalSisters 0 )(FullNephews 0 )(PaternalNephews 0 )(FullUncles 0 )
+(PaternalUncles 0 )(FullCousins 0 )(PaternalCousins 0 ))
+ =>
+(printout t "Wives,25" crlf "FullBrothers,50" crlf "FullSisters,25" crlf ));
+;--------------- FSis () , Wife , FBro ()--------------------------------------------------
+(defrule rule-218 (and (dead (Husband 0 )(Wives 1 )(Sons 0 )(Daughters 0 )
+(Grandsons 0 )(Granddaughters 0 )(Father 0 )(Mother 0 )
+(Grandfather 0 )(PaternalGrandmother 0 )(MaternalGrandmother 0 )(FullBrothers ?x )
+(FullSisters ?y )(PaternalBrothers 0 )(PaternalSisters 0 )(MaternalBrothers 0 )
+(MaternalSisters 0 )(FullNephews 0 )(PaternalNephews 0 )(FullUncles 0 )
+(PaternalUncles 0 )(FullCousins 0 )(PaternalCousins 0 ))(test (>= ?x 1))(test (>= ?y 1)))
+ =>
+(printout t "Wives,25" crlf "FullBrothers,"(* 100 (/ (* 6 ?x) (* 4 (+ (* 2 ?x) ?y)))) crlf "FullSisters," (* 100(/ (* 3 ?y) (* 4 (+ (* 2 ?x) ?y)))) crlf ));
+
+
+;------------------FSis , Wife , Mother, FBro-----------------------------------------------
+(defrule rule-101 (dead (Husband 0 )(Wives 1 )(Sons 0 )(Daughters 0 )
+(Grandsons 0 )(Granddaughters 0 )(Father 0 )(Mother 1 )
+(Grandfather 0 )(PaternalGrandmother 0 )(MaternalGrandmother 0 )(FullBrothers 1 )
+(FullSisters 1 )(PaternalBrothers 0 )(PaternalSisters 0 )(MaternalBrothers 0 )
+(MaternalSisters 0 )(FullNephews 0 )(PaternalNephews 0 )(FullUncles 0 )
+(PaternalUncles 0 )(FullCousins 0 )(PaternalCousins 0 ))
+ =>
+(printout t "Wives,25" crlf "Mother,16.67" crlf "FullBrothers,38.89" crlf "FullSisters,19.44" crlf ));
+
+;------------------FSis (), Wife , Mother, FBro ()-----------------------------------------------
+(defrule rule-219 (and (dead (Husband 0 )(Wives 1 )(Sons 0 )(Daughters 0 )
+(Grandsons 0 )(Granddaughters 0 )(Father 0 )(Mother 1 )
+(Grandfather 0 )(PaternalGrandmother 0 )(MaternalGrandmother 0 )(FullBrothers ?x )
+(FullSisters ?y )(PaternalBrothers 0 )(PaternalSisters 0 )(MaternalBrothers 0 )
+(MaternalSisters 0 )(FullNephews 0 )(PaternalNephews 0 )(FullUncles 0 )
+(PaternalUncles 0 )(FullCousins 0 )(PaternalCousins 0 ))(test (>= ?x 1))(test (>= ?y 1)))
+ =>
+(printout t "Wives,25" crlf "Mother,16.67" crlf "FullBrothers,"(* 100 (/ (* 14 ?x) (* 12 (+ (* 2 ?x) ?y)))) crlf "FullSisters," (* 100(/ (* 7 ?y) (* 12 (+ (* 2 ?x) ?y)))) crlf ));
+
+;----------------- FSis , Wife , Daughter, FBro------------------------------------------------
+(defrule rule-102 (dead (Husband 0 )(Wives 1 )(Sons 0 )(Daughters 1 )
+(Grandsons 0 )(Granddaughters 0 )(Father 0 )(Mother 0 )
+(Grandfather 0 )(PaternalGrandmother 0 )(MaternalGrandmother 0 )(FullBrothers 1 )
+(FullSisters 1 )(PaternalBrothers 0 )(PaternalSisters 0 )(MaternalBrothers 0 )
+(MaternalSisters 0 )(FullNephews 0 )(PaternalNephews 0 )(FullUncles 0 )
+(PaternalUncles 0 )(FullCousins 0 )(PaternalCousins 0 ))
+ =>
+(printout t "Wives,12.5" crlf "Daughters,50" crlf "FullBrothers,25" crlf "FullSisters,12.5" crlf ));
+
+
+;----------------- FSis (), Wife , Daughter, FBro () ------------------------------------------------
+(defrule rule-223 (and (dead (Husband 0 )(Wives 1 )(Sons 0 )(Daughters 1 )
+(Grandsons 0 )(Granddaughters 0 )(Father 0 )(Mother 0 )
+(Grandfather 0 )(PaternalGrandmother 0 )(MaternalGrandmother 0 )(FullBrothers ?x )
+(FullSisters ?y )(PaternalBrothers 0 )(PaternalSisters 0 )(MaternalBrothers 0 )
+(MaternalSisters 0 )(FullNephews 0 )(PaternalNephews 0 )(FullUncles 0 )
+(PaternalUncles 0 )(FullCousins 0 )(PaternalCousins 0 ))(test (>= ?x 1))(test (>= ?y 1)))
+ =>
+(printout t "Wives,12.5" crlf "Daughters,50" crlf "FullBrothers,"(* 100 (/ (* 18 ?x) (* 24 (+ (* 2 ?x) ?y)))) crlf "FullSisters," (* 100(/ (* 9 ?y) (* 24 (+ (* 2 ?x) ?y)))) crlf ));
+
+;----------------- FSis , Wife , Daughter (2), FBro------------------------------------------------
+(defrule rule-103 (and (dead (Husband 0 )(Wives 1 )(Sons 0 )(Daughters ?y )
+(Grandsons 0 )(Granddaughters 0 )(Father 0 )(Mother 0 )
+(Grandfather 0 )(PaternalGrandmother 0 )(MaternalGrandmother 0 )(FullBrothers 1 )
+(FullSisters 1 )(PaternalBrothers 0 )(PaternalSisters 0 )(MaternalBrothers 0 )
+(MaternalSisters 0 )(FullNephews 0 )(PaternalNephews 0 )(FullUncles 0 )
+(PaternalUncles 0 )(FullCousins 0 )(PaternalCousins 0 ))(test (>= ?y 2)))
+ =>
+(printout t "Wives,12.5" crlf "Daughters,66.67" crlf "FullBrothers,13.89" crlf "FullSisters,6.94" crlf ));
+
+;----------------- FSis () , Wife , Daughter (2), FBro ()------------------------------------------------
+(defrule rule-221 (and (dead (Husband 0 )(Wives 1 )(Sons 0 )(Daughters ?z )
+(Grandsons 0 )(Granddaughters 0 )(Father 0 )(Mother 0 )
+(Grandfather 0 )(PaternalGrandmother 0 )(MaternalGrandmother 0 )(FullBrothers ?x )
+(FullSisters ?y )(PaternalBrothers 0 )(PaternalSisters 0 )(MaternalBrothers 0 )
+(MaternalSisters 0 )(FullNephews 0 )(PaternalNephews 0 )(FullUncles 0 )
+(PaternalUncles 0 )(FullCousins 0 )(PaternalCousins 0 ))(test (>= ?x 1))(test (>= ?y 1))(test (>= ?z 2)))
+ =>
+(printout t "Wives,12.5" crlf "Daughters,66.67" crlf "FullBrothers,"(* 100 (/ (* 20 ?x) (* 48 (+ (* 2 ?x) ?y)))) crlf "FullSisters," (* 100(/ (* 10 ?y) (* 48 (+ (* 2 ?x) ?y)))) crlf ));
+
+;------------------FSis , Wife , Mother , Daughter, FBro-----------------------------------------------
+(defrule rule-104  (dead (Husband 0 )(Wives 1 )(Sons 0 )(Daughters 1 )
+(Grandsons 0 )(Granddaughters 0 )(Father 0 )(Mother 1 )
+(Grandfather 0 )(PaternalGrandmother 0 )(MaternalGrandmother 0 )(FullBrothers ?x )
+(FullSisters ?y )(PaternalBrothers 0 )(PaternalSisters 0 )(MaternalBrothers 0 )
+(MaternalSisters 0 )(FullNephews 0 )(PaternalNephews 0 )(FullUncles 0 )
+(PaternalUncles 0 )(FullCousins 0 )(PaternalCousins 0 ))(test (>= ?x 1))(test (>= ?y 1))
+ =>
+(printout t "Wives,12.5" crlf "Daughters,50" crlf "Mother,16.67" crlf "FullBrothers,13.89" crlf "FullSisters,6.94" crlf ));
+;------------------FSis() , Wife , Mother , Daughter, FBro()-----------------------------------------------
+(defrule rule-222  (and(dead (Husband 0 )(Wives 1 )(Sons 0 )(Daughters 1 )
+(Grandsons 0 )(Granddaughters 0 )(Father 0 )(Mother 1 )
+(Grandfather 0 )(PaternalGrandmother 0 )(MaternalGrandmother 0 )(FullBrothers ?x )
+(FullSisters ?y )(PaternalBrothers 0 )(PaternalSisters 0 )(MaternalBrothers 0 )
+(MaternalSisters 0 )(FullNephews 0 )(PaternalNephews 0 )(FullUncles 0 )
+(PaternalUncles 0 )(FullCousins 0 )(PaternalCousins 0 ))(test (>= ?x 1))(test (>= ?y 1)))
+ =>
+(printout t "Wives,12.5" crlf "Daughters,50" crlf "Mother,16.67" crlf "FullBrothers,"(* 100 (/ (* 10 ?x) (* 24 (+ (* 2 ?x) ?y)))) crlf "FullSisters," (* 100(/ (* 5 ?y) (* 24 (+ (* 2 ?x) ?y)))) crlf ));
+
+;------------------FSis , Wife , Mother , Daughter(2), FBro-----------------------------------------------
+(defrule rule-105 (and (dead (Husband 0 )(Wives 1 )(Sons 0 )(Daughters ?y )
+(Grandsons 0 )(Granddaughters 0 )(Father 0 )(Mother 1 )
+(Grandfather 0 )(PaternalGrandmother 0 )(MaternalGrandmother 0 )(FullBrothers 1 )
+(FullSisters 1 )(PaternalBrothers 0 )(PaternalSisters 0 )(MaternalBrothers 0 )
+(MaternalSisters 0 )(FullNephews 0 )(PaternalNephews 0 )(FullUncles 0 )
+(PaternalUncles 0 )(FullCousins 0 )(PaternalCousins 0 ))(test (>= ?y 2)))
+ =>
+(printout t "Wives,12.5" crlf "Daughters,66.67" crlf "Mother,16.67" crlf "FullBrothers,2.78" crlf "FullSisters,1.39" crlf ));
+
+;------------------FSis () , Wife , Mother , Daughter(2), FBro () -----------------------------------------------
+(defrule rule-220 (and (dead (Husband 0 )(Wives 1 )(Sons 0 )(Daughters ?z )
+(Grandsons 0 )(Granddaughters 0 )(Father 0 )(Mother 1 )
+(Grandfather 0 )(PaternalGrandmother 0 )(MaternalGrandmother 0 )(FullBrothers ?x )
+(FullSisters ?y )(PaternalBrothers 0 )(PaternalSisters 0 )(MaternalBrothers 0 )
+(MaternalSisters 0 )(FullNephews 0 )(PaternalNephews 0 )(FullUncles 0 )
+(PaternalUncles 0 )(FullCousins 0 )(PaternalCousins 0 ))(test (>= ?x 1))(test (>= ?y 1))(test (>= ?z 2)))
+ =>
+(printout t "Wives,12.5" crlf "Daughters,66.67" crlf "Mother,16.67" crlf "FullBrothers,"(* 100 (/ (* 2 ?x) (* 24 (+ (* 2 ?x) ?y)))) crlf "FullSisters," (* 100(/ (* 1 ?y) (* 24 (+ (* 2 ?x) ?y)))) crlf ));
