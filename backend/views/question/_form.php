@@ -41,27 +41,6 @@ use common\models\Questiongroup;
             'allowClear' => true,
         ],
     ]) ?>
-    <?= $form->field($model, 'pp')->widget(Select2::className(),[
-        'data' => [
-                Question::NULLANSWER=> Yii::t('app','N/A'),
-                Question::NOANSWER=> Yii::t('app', 'No'),
-                Question::YESANSWER => Yii::t('app', 'Yes'),
-                Question::BOTHANSWER =>  Yii::t('app', 'Both'),
-        ],
-        'options' => ['placeholder' => 'Select Parent answer ...'],
-        'pluginOptions' => [
-            'allowClear' => true,
-        ],
-    ]) ?>
-
-
-    <?= $form->field($model, 'group_id')->widget(Select2::className(),[
-        'data' => ArrayHelper::map(Questiongroup::find()->all(),'id','name'),
-        'options' => ['placeholder' => 'Select a group ...'],
-        'pluginOptions' => [
-            'allowClear' => true,
-        ],
-    ]) ?>
 
 
   
