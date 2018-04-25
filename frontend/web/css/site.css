@@ -136,9 +136,9 @@ nav {
     font-family: Amiri;
 }
 .btn-main{
-    background-color: #fff;
-    color: #0f3648;
-    border: 1.5px solid #0c222d;
+    background-color: #faffa8;
+    color: #2d5c73;
+    border: 1.5px solid #2d5c73;
     width: 100px;
     border-radius: 0px;
     height: 50px;
@@ -146,9 +146,9 @@ nav {
     transition:  1s;
 }
 .btn-main:hover{
-    background-color: #0c222d;
-    color: #fff;
-    border: 1px solid #fff;
+    background-color: #2d5c73;
+    color: #faffa8;
+    border: 1px solid #faffa8;
     width: 102px;
     height: 51px;
 
@@ -173,7 +173,9 @@ btn-main-reversed:hover{
 
 
 }
-
+.jumbotron p {
+    color: #faffa8;
+}
 /*General end */
 .site .navbar-inverse.navbar-fixed-top.navbar{
     display: none;
@@ -249,6 +251,7 @@ btn-main-reversed:hover{
     padding: 8px 45px;
     transition: 0.5s;
     border-radius: 0;
+    background-color: #2d5c73 !important;
 }
 .inheritance-form .submit{
     margin-bottom: 0px;
@@ -383,3 +386,30 @@ html[dir=rtl] .answer label {
 
 
 /* Result page End */
+
+/* NoResult Page Start*/
+.noresult-col p{
+    font-size: 25px;
+    line-height: 2;
+    margin-bottom: 25px;
+    color: #2d5c73;
+}
+.noresult-col{
+    padding: 25px;
+    -webkit-box-shadow: 0px 0px 36px 0px rgba(45,92,115,1);
+    -moz-box-shadow: 0px 0px 36px 0px rgba(45,92,115,1);
+    box-shadow: 0px 0px 36px 0px rgba(45,92,115,1);
+}
+.noresult-col .submit button {
+    font-family: Amiri;
+    font-size: 25px;
+    padding: 8px 45px;
+    transition: 0.5s;
+    border-radius: 0;
+    background-color: #2d5c73;
+}
+img.noresult-icon{
+    width: 100px;
+    margin-bottom: 13px;
+}
+/* NoResult Page End*/

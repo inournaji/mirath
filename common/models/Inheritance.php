@@ -172,9 +172,6 @@ class Inheritance extends \yii\db\ActiveRecord
     }
     public function beforeValidate()
     {
-        if($this->status == 1 ){
-            $this->husband =1;
-        }
 
         return parent::beforeValidate();
     }

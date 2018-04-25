@@ -51,13 +51,24 @@ class InheritanceController extends Controller
                $result =  ClipsHelper::calculate($clips_object);
                $result = Inheritance::t($result);
 
-              return  $this->render('result',[
-                   'result' => $result,
-                   'model' => $model,
-               ]);
+               if(count($result) !=0){
+                   return  $this->render('result',[
+                       'result' => $result,
+                       'model' => $model,
+                   ]);
+               }else{
+                   return  $this->render('noresult',[]);
+               }
+
+
             }
             else
-                return $model->getErrors();
+            {
+                Yii::$app->getSession()->setFlash('error',$model->getErrors());
+                return  $this->render('index',[
+                    'inheritance' => $model,
+                ]);
+            }
 
         }else{
                 $model = new Inheritance();
@@ -145,7 +156,6 @@ class InheritanceController extends Controller
         if (($model = Inheritance::findOne($id)) !== null) {
             return $model;
         }
-
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 }

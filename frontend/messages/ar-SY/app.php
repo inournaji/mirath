@@ -9,7 +9,7 @@
 return[
     'Home' => 'الرئيسية',
     'Mirath' => 'ميراث',
-    'Start' => 'ابدأ',
+    'Start' => 'ابـدأ',
     'Yes' => 'نعم',
     'No' => 'لا',
     'Continue' => 'متابعة',
@@ -41,5 +41,9 @@ return[
     'PaternalUncles' => 'العموم أخوة الأب لأب',
     'FullCousins' => 'أبناء العموم الأشقاء للأب',
     'PaternalCousins' => 'أبناء العموم الغير أشقاء للأب',
+    'Sorry, we couldn\'t find a solution for your case, we are working on new cases please try again later'=> 'عذرا، لم نتمكن من حل هذه الحالة، نحن نعمل على اضافة حالات جديدة يرجى المحاولة لاحقاً',
+    'Try again' => 'ابدأ من جديد',
+    'Another Case' => 'حساب حالة أخرى',
+
 ];
 ?>
