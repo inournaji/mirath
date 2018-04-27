@@ -18,10 +18,10 @@ return [
         'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'question',
     ],
-    [
+   /* [
         'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'question_en',
-    ],
+    ],*/
     [
         'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'parent',
@@ -37,10 +37,10 @@ return [
         'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'desc',
     ],
-    [
+    /*[
         'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'desc_en',
-    ],
+    ],*/
 
     [
         'class'=>'\kartik\grid\DataColumn',
@@ -57,6 +57,10 @@ return [
             return $model->type->name;
         },
 
+    ],
+    [
+        'class'=>'\kartik\grid\DataColumn',
+        'attribute'=>'weight',
     ],
     // [
         // 'class'=>'\kartik\grid\DataColumn',

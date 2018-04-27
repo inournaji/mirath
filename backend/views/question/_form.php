@@ -5,7 +5,7 @@ use common\models\Type;
 use common\models\Question;
 use yii\helpers\ArrayHelper;
 use kartik\select2\Select2;
-use common\models\Questiongroup;
+use kartik\touchspin\TouchSpin;
 /* @var $this yii\web\View */
 /* @var $model common\models\Question */
 /* @var $form yii\widgets\ActiveForm */
@@ -42,8 +42,12 @@ use common\models\Questiongroup;
         ],
     ]) ?>
 
+    <?= $form->field($model, 'weight')->widget(TouchSpin::className(),[
+        'pluginOptions' => [  'min' => -50,'max=>'=>50,'step' => 1,'initval' => 0]
+    ]) ?>
 
-  
+
+
 	<?php if (!Yii::$app->request->isAjax){ ?>
 	  	<div class="form-group">
 	        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

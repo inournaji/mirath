@@ -17,6 +17,7 @@ use kartik\touchspin\TouchSpin;
  * @property string $desc_en
  * @property int $default_answer
  * @property int $parent
+ * @property int $weight
  * @property int $type_id
  * @property string $symbol
  *
@@ -47,8 +48,9 @@ class Question extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['type_id','default_answer'], 'required'],
-            [['type_id', 'parent','default_answer'], 'integer'],
+            [['type_id','default_answer',], 'required'],
+            [['type_id', 'parent','default_answer','weight'], 'integer'],
+            [['weight'],'default','value'=>0],
             [['symbol'], 'required'],
             [['visible'], 'safe'],
             [['question', 'question_en', 'desc', 'desc_en','symbol'], 'string', 'max' => 255],
@@ -63,6 +65,7 @@ class Question extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
+            'weight' => Yii::t('app', 'Weight'),
             'question' => Yii::t('app', 'Question'),
             'question_en' => Yii::t('app', 'Question En'),
             'desc' => Yii::t('app', 'Desc'),

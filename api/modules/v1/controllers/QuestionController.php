@@ -32,7 +32,7 @@ class QuestionController extends Controller
         else
             \Yii::$app->language = 'en-US';
         $activeData = new ActiveDataProvider([
-            'query' => Question::find()->with('choices')->with('type'),
+            'query' => Question::find()->with('choices')->with('type')->orderBy('weight'),
             'pagination'=>false,
 
         ]);
