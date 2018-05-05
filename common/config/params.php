@@ -1,7 +1,7 @@
 <?php
 return [
     'adminEmail' => 'admin@example.com',
-    'supportEmail' => 'support@example.com',
+    'supportEmail' => 'help@mirath.com',
     'user.passwordResetTokenExpire' => 3600,
     'languages'=>[
         'ar-SY' => 'العربية',

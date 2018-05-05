@@ -29,10 +29,18 @@ class ClipsHelper
         fclose($handle);
         $shell_result = shell_exec($engine . "clips-ubuntu -f2 " . $tmpfname);
         $clips_output =  explode("\n",$shell_result);
+
         $result = array();
         foreach ($clips_output as $row){
             if(strpos($row,',')){
-                $result[] = explode(",",$row);
+                $tmp = explode(",",$row);
+                $is_exists = false;
+                foreach ($result as $row2){
+                    if($row2[0] == $tmp[0])
+                        $is_exists = true;
+                }
+                if(!$is_exists)
+                    $result[] = $tmp;
             }
         }
         return $result;
