@@ -39,8 +39,10 @@ class ClipsHelper
                     if($row2[0] == $tmp[0])
                         $is_exists = true;
                 }
-                if(!$is_exists)
+                if(!$is_exists){
+                    $tmp[1]= round($tmp[1],2);
                     $result[] = $tmp;
+                }
             }
         }
         return $result;
