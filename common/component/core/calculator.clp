@@ -1123,3 +1123,317 @@
 (PaternalUncles 0 )(FullCousins 0 )(PaternalCousins 0 ))(test (>= ?x 1))(test (>= ?y 1))(test (>= ?z 2)))
  =>
 (printout t "Wives,12.5" crlf "Daughters,66.67" crlf "Mother,16.67" crlf "FullBrothers,"(* 100 (/ (* 2 ?x) (* 24 (+ (* 2 ?x) ?y)))) crlf "FullSisters," (* 100(/ (* 1 ?y) (* 24 (+ (* 2 ?x) ?y)))) crlf ));
+
+;-----Fe;-----------------------------------------
+;-------Husband, Sons, Grandfather ------------
+;-----------------------------------------
+(defrule rule-306(and (dead (Husband 1 )(Wives 0 )(Sons ?x )(Daughters 0 )
+(Grandsons 0 )(Granddaughters 0 )(Grandfather 1 )(Mother 0 )
+(Father 0)(PaternalGrandmother 0 )(MaternalGrandmother 0 )(FullBrothers 0 )
+(FullSisters 0 )(PaternalBrothers 0 )(PaternalSisters 0 )(MaternalBrothers 0 )
+(MaternalSisters 0 )(FullNephews 0 )(PaternalNephews 0 )(FullUncles 0 )
+(PaternalUncles 0 )(FullCousins 0 )(PaternalCousins 0 ))(test (>= ?x 1)))
+ =>
+(printout t "Husband,25" crlf "Sons,58.33" crlf "Grandfather,16.67" crlf ));
+;-----------------------------------------
+;-----------------------------------------
+;-------Husband, Daughters, Grandfather -------
+;-----------------------------------------
+(defrule rule-308 (and(dead (Husband 1 )(Wives 0 )(Sons 0 )(Daughters ?y )
+(Grandsons 0 )(Granddaughters 0 )(Grandfather 1 )(Mother 0 )
+(Father 0)(PaternalGrandmother 0 )(MaternalGrandmother 0 )(FullBrothers 0 )
+(FullSisters 0 )(PaternalBrothers 0 )(PaternalSisters 0 )(MaternalBrothers 0 )
+(MaternalSisters 0 )(FullNephews 0 )(PaternalNephews 0 )(FullUncles 0 )
+(PaternalUncles 0 )(FullCousins 0 )(PaternalCousins 0 ))(test (>= ?y 1)))
+ =>
+(printout t "Husband,25" crlf "Daughters,50" crlf "Grandfather,25" crlf ));
+;-----------------------------------------
+
+;-------Husband, Daughters, Sons, Grandfather -
+;-----------------------------------------
+(defrule rule-311 (and(dead (Husband 1 )(Wives 0 )(Sons ?x )(Daughters ?y )
+(Grandsons 0 )(Granddaughters 0 )(Grandfather 1 )(Mother 0 )
+(Father 0)(PaternalGrandmother 0 )(MaternalGrandmother 0 )(FullBrothers 0 )
+(FullSisters 0 )(PaternalBrothers 0 )(PaternalSisters 0 )(MaternalBrothers 0 )
+(MaternalSisters 0 )(FullNephews 0 )(PaternalNephews 0 )(FullUncles 0 )
+(PaternalUncles 0 )(FullCousins 0 )(PaternalCousins 0 ))(test (>= ?x 1))(test (>= ?y 1)))
+ =>
+(printout t "Husband,25" crlf "Sons,38.89" crlf "Daughters,19.44" crlf "Grandfather,16.67" crlf ));
+
+;--------------------------------------------------
+;-------Husband, Daughters, Sons, Grandfather, Mother --
+;--------------------------------------------------
+(defrule rule-312(and(dead (Husband 1 )(Wives 0 )(Sons ?x )(Daughters ?y )
+(Grandsons 0 )(Granddaughters 0 )(Grandfather 1 )(Mother 1 )
+(Father 0)(PaternalGrandmother 0 )(MaternalGrandmother 0 )(FullBrothers 0 )
+(FullSisters 0 )(PaternalBrothers 0 )(PaternalSisters 0 )(MaternalBrothers 0 )
+(MaternalSisters 0 )(FullNephews 0 )(PaternalNephews 0 )(FullUncles 0 )
+(PaternalUncles 0 )(FullCousins 0 )(PaternalCousins 0 ))(test (>= ?x 1))(test (>= ?y 1)))
+ =>
+(printout t "Husband,25" crlf "Sons,27.78" crlf "Daughters,13.89" crlf "Grandfather,16.67" crlf "Mother,16.67" crlf ));
+;--------------------------------------------------
+;-------Husband, Sons, Grandfather, Mother -------------
+;--------------------------------------------------
+(defrule rule-3013(and (dead (Husband 1 )(Wives 0 )(Sons ?x )(Daughters 0 )
+(Grandsons 0 )(Granddaughters 0 )(Grandfather 1 )(Mother 1 )
+(Father 0)(PaternalGrandmother 0 )(MaternalGrandmother 0 )(FullBrothers 0 )
+(FullSisters 0 )(PaternalBrothers 0 )(PaternalSisters 0 )(MaternalBrothers 0 )
+(MaternalSisters 0 )(FullNephews 0 )(PaternalNephews 0 )(FullUncles 0 )
+(PaternalUncles 0 )(FullCousins 0 )(PaternalCousins 0 ))(test (>= ?x 1)))
+ =>
+(printout t "Husband,25" crlf "Sons,41.67" crlf "Grandfather,16.67" crlf "Mother,16.67" crlf ));
+
+;-----------------------------------------------------------------
+;------------- Husband ,Grandfather -----------------------------------
+;-----------------------------------------------------------------
+(defrule rule-314(dead (Husband 1 )(Wives 0 )(Sons 0 )(Daughters 0 )
+(Grandsons 0 )(Granddaughters 0 )(Grandfather 1 )(Mother 0 )
+(Father 0)(PaternalGrandmother 0 )(MaternalGrandmother 0 )(FullBrothers 0 )
+(FullSisters 0 )(PaternalBrothers 0 )(PaternalSisters 0 )(MaternalBrothers 0 )
+(MaternalSisters 0 )(FullNephews 0 )(PaternalNephews 0 )(FullUncles 0 )
+(PaternalUncles 0 )(FullCousins 0 )(PaternalCousins 0 ))
+ =>
+(printout t "Husband,50" crlf "Grandfather,50" crlf ));
+;-----------------------------------------------------------------
+;-------------Grandfather -----------------------------------
+;-----------------------------------------------------------------
+(defrule rule-315 (dead (Husband 0 )(Wives 0 )(Sons 0 )(Daughters 0 )
+(Grandsons 0 )(Granddaughters 0 )(Grandfather 1 )(Mother 0 )
+(Father 0)(PaternalGrandmother 0 )(MaternalGrandmother 0 )(FullBrothers 0 )
+(FullSisters 0 )(PaternalBrothers 0 )(PaternalSisters 0 )(MaternalBrothers 0 )
+(MaternalSisters 0 )(FullNephews 0 )(PaternalNephews 0 )(FullUncles 0 )
+(PaternalUncles 0 )(FullCousins 0 )(PaternalCousins 0 ))
+ =>
+(printout t "Grandfather,100" crlf ));
+
+
+;-----------------------------------------------------------------
+;------------- Mother ,Grandfather -----------------------------------
+;-----------------------------------------------------------------
+(defrule rule-318 (dead (Husband 0 )(Wives 0 )(Sons 0 )(Daughters 0 )
+(Grandsons 0 )(Granddaughters 0 )(Grandfather 1 )(Mother 1 )
+(Father 0)(PaternalGrandmother 0 )(MaternalGrandmother 0 )(FullBrothers 0 )
+(FullSisters 0 )(PaternalBrothers 0 )(PaternalSisters 0 )(MaternalBrothers 0 )
+(MaternalSisters 0 )(FullNephews 0 )(PaternalNephews 0 )(FullUncles 0 )
+(PaternalUncles 0 )(FullCousins 0 )(PaternalCousins 0 ))
+ =>
+(printout t "Grandfather,66.67" crlf "Mother,33.33" crlf ));
+
+;-----------------------------------------------------------------
+;------------- Husband ,Grandfather  , Mother -----------------------------------
+;-----------------------------------------------------------------
+(defrule rule-319 (dead (Husband 1 )(Wives 0 )(Sons 0 )(Daughters 0 )
+(Grandsons 0 )(Granddaughters 0 )(Grandfather 1 )(Mother 1 )
+(Father 0)(PaternalGrandmother 0 )(MaternalGrandmother 0 )(FullBrothers 0 )
+(FullSisters 0 )(PaternalBrothers 0 )(PaternalSisters 0 )(MaternalBrothers 0 )
+(MaternalSisters 0 )(FullNephews 0 )(PaternalNephews 0 )(FullUncles 0 )
+(PaternalUncles 0 )(FullCousins 0 )(PaternalCousins 0 ))
+ =>
+(printout t "Husband,50" crlf "Grandfather,33.33" crlf "Mother,16.67" crlf ));
+
+
+;-----------------------------------------------------------------
+;------------- Daughter ,Grandfather -----------------------------------
+;-----------------------------------------------------------------
+(defrule rule-321 (and(dead (Husband 0 )(Wives 0 )(Sons 0 )(Daughters ?y )
+(Grandsons 0 )(Granddaughters 0 )(Grandfather 1 )(Mother 0 )
+(Father 0)(PaternalGrandmother 0 )(MaternalGrandmother 0 )(FullBrothers 0 )
+(FullSisters 0 )(PaternalBrothers 0 )(PaternalSisters 0 )(MaternalBrothers 0 )
+(MaternalSisters 0 )(FullNephews 0 )(PaternalNephews 0 )(FullUncles 0 )
+(PaternalUncles 0 )(FullCousins 0 )(PaternalCousins 0 ))(test (>= ?y 1)))
+ =>
+(printout t "Daughters,50" crlf "Grandfather,50" crlf ));
+;-----------------------------------------------------------------
+
+;-----------------------------------------------------------------
+;------------- Daughter ,Grandfather , Mother -----------------------------------
+;-----------------------------------------------------------------
+(defrule rule-323 (and (dead (Husband 0 )(Wives 0 )(Sons 0 )(Daughters ?y )
+(Grandsons 0 )(Granddaughters 0 )(Grandfather 1 )(Mother 1 )
+(Father 0)(PaternalGrandmother 0 )(MaternalGrandmother 0 )(FullBrothers 0 )
+(FullSisters 0 )(PaternalBrothers 0 )(PaternalSisters 0 )(MaternalBrothers 0 )
+(MaternalSisters 0 )(FullNephews 0 )(PaternalNephews 0 )(FullUncles 0 )
+(PaternalUncles 0 )(FullCousins 0 )(PaternalCousins 0 ))(test (>= ?y 1)))
+ =>
+(printout t "Daughters,50" crlf "Grandfather,33.33" crlf "Mother,16.67" crlf ));
+
+;-----------------------------------------------------------------
+;------------- Son , Grandfather -----------------------------------
+;-----------------------------------------------------------------
+(defrule rule-325  (and(dead (Husband 0 )(Wives 0 )(Sons ?x )(Daughters 0 )
+(Grandsons 0 )(Granddaughters 0 )(Grandfather 1 )(Mother 0 )
+(Father 0)(PaternalGrandmother 0 )(MaternalGrandmother 0 )(FullBrothers 0 )
+(FullSisters 0 )(PaternalBrothers 0 )(PaternalSisters 0 )(MaternalBrothers 0 )
+(MaternalSisters 0 )(FullNephews 0 )(PaternalNephews 0 )(FullUncles 0 )
+(PaternalUncles 0 )(FullCousins 0 )(PaternalCousins 0 ))(test (>= ?x 1)))
+ =>
+(printout t "Sons,83.33" crlf "Grandfather,16.67" crlf ));
+
+;--------------------------------------------------
+;-------Husband , Daughters , Grandfather , Mother-
+;--------------------------------------------------
+(defrule rule-329 (and(dead (Husband 1 )(Wives 0 )(Sons 0 )(Daughters ?y )
+(Grandsons 0 )(Granddaughters 0 )(Grandfather 1 )(Mother 1 )
+(Father 0)(PaternalGrandmother 0 )(MaternalGrandmother 0 )(FullBrothers 0 )
+(FullSisters 0 )(PaternalBrothers 0 )(PaternalSisters 0 )(MaternalBrothers 0 )
+(MaternalSisters 0 )(FullNephews 0 )(PaternalNephews 0 )(FullUncles 0 )
+(PaternalUncles 0 )(FullCousins 0 )(PaternalCousins 0 ))(test (>= ?y 1)))
+ =>
+(printout t "Husband,23.08" crlf "Sons,46.15" crlf "Grandfather,15.38" crlf "Mother,15.38" crlf ));
+;-----------------------------------------------------------------
+;------------- Son , Daughter ,Grandfather -----------------------------------
+;-----------------------------------------------------------------
+(defrule rule-330 (and(dead (Husband 0 )(Wives 0 )(Sons ?x )(Daughters ?y )
+(Grandsons 0 )(Granddaughters 0 )(Grandfather 1 )(Mother 0 )
+(Father 0)(PaternalGrandmother 0 )(MaternalGrandmother 0 )(FullBrothers 0 )
+(FullSisters 0 )(PaternalBrothers 0 )(PaternalSisters 0 )(MaternalBrothers 0 )
+(MaternalSisters 0 )(FullNephews 0 )(PaternalNephews 0 )(FullUncles 0 )
+(PaternalUncles 0 )(FullCousins 0 )(PaternalCousins 0 )) (test (>= ?y 1))(test (>= ?x 1)))
+ =>
+(printout t "Sons," (* 100 (/ (* 10 ?x) (* 6 (+ (* 2 ?x) ?y)))) crlf "Daughters," (* 100 (/ (* 5 ?y) (* 6 (+ (* 2 ?x) ?y)))) crlf "Grandfather,16.67" crlf ));
+
+;-----------------------------------------------------------------
+;------------- Son , Daughter , Grandfather , mother -----------------------------------
+;-----------------------------------------------------------------
+
+(defrule rule-332(and(dead (Husband 0 )(Wives 0 )(Sons ?x )(Daughters ?y )
+(Grandsons 0 )(Granddaughters 0 )(Grandfather 1 )(Mother 1 )
+(Father 0)(PaternalGrandmother 0 )(MaternalGrandmother 0 )(FullBrothers 0 )
+(FullSisters 0 )(PaternalBrothers 0 )(PaternalSisters 0 )(MaternalBrothers 0 )
+(MaternalSisters 0 )(FullNephews 0 )(PaternalNephews 0 )(FullUncles 0 )
+(PaternalUncles 0 )(FullCousins 0 )(PaternalCousins 0 )) (test (>= ?y 1))(test (>= ?x 1)))
+ =>
+(printout t "Sons," (* 100(/ (* 8 ?x) (* 6 (+ (* 2 ?x) ?y)))) crlf "Daughters," (* 100(/ (* 4 ?y) (* 6 (+ (* 2 ?x) ?y)))) crlf "Grandfather,16.67" crlf "Mother,16.67" crlf ));
+
+
+;-----------------------------------------
+;-------Wife, Sons, Grandfather ------------
+;-----------------------------------------
+(defrule rule-337 (and(dead (Husband 0 )(Wives 1 )(Sons ?x )(Daughters 0 )
+(Grandsons 0 )(Granddaughters 0 )(Grandfather 1 )(Mother 0 )
+(Father 0)(PaternalGrandmother 0 )(MaternalGrandmother 0 )(FullBrothers 0 )
+(FullSisters 0 )(PaternalBrothers 0 )(PaternalSisters 0 )(MaternalBrothers 0 )
+(MaternalSisters 0 )(FullNephews 0 )(PaternalNephews 0 )(FullUncles 0 )
+(PaternalUncles 0 )(FullCousins 0 )(PaternalCousins 0 ))(test (>= ?x 1)))
+ =>
+(printout t "Wives,12.5" crlf "Sons,70.83" crlf "Grandfather,16.67" crlf ));
+
+;-----------------------------------------
+;-------Wife, Daughters, Grandfather -------
+;-----------------------------------------
+(defrule rule-339 (and(dead (Husband 0 )(Wives 1 )(Sons 0 )(Daughters ?y )
+(Grandsons 0 )(Granddaughters 0 )(Grandfather 1 )(Mother 0 )
+(Father 0)(PaternalGrandmother 0 )(MaternalGrandmother 0 )(FullBrothers 0 )
+(FullSisters 0 )(PaternalBrothers 0 )(PaternalSisters 0 )(MaternalBrothers 0 )
+(MaternalSisters 0 )(FullNephews 0 )(PaternalNephews 0 )(FullUncles 0 )
+(PaternalUncles 0 )(FullCousins 0 )(PaternalCousins 0 ))(test (>= ?y 1)))
+ =>
+(printout t "Wives,12.5" crlf "Daughters,50" crlf "Grandfather,37.5" crlf ));
+;-----------------------------------------
+;-------Wife, Daughters (>2) , Grandfather -------
+;-----------------------------------------
+(defrule rule-350(and(dead (Husband 0 )(Wives 1 )(Sons 0 )(Daughters ?y )
+(Grandsons 0 )(Granddaughters 0 )(Grandfather 1 )(Mother 0 )
+(Father 0)(PaternalGrandmother 0 )(MaternalGrandmother 0 )(FullBrothers 0 )
+(FullSisters 0 )(PaternalBrothers 0 )(PaternalSisters 0 )(MaternalBrothers 0 )
+(MaternalSisters 0 )(FullNephews 0 )(PaternalNephews 0 )(FullUncles 0 )
+(PaternalUncles 0 )(FullCousins 0 )(PaternalCousins 0 ))(test (>= ?y 1)))
+ =>
+(printout t "Wives,12.5" crlf "Daughters,66.67" crlf "Grandfather,20.83" crlf ));
+
+
+;-----------------------------------------
+;-------Wife, Daughters, Sons, Grandfather -
+;-----------------------------------------
+(defrule rule-342 (and(dead (Husband 0 )(Wives 1 )(Sons ?x )(Daughters ?y )
+(Grandsons 0 )(Granddaughters 0 )(Grandfather 1 )(Mother 0 )
+(Father 0)(PaternalGrandmother 0 )(MaternalGrandmother 0 )(FullBrothers 0 )
+(FullSisters 0 )(PaternalBrothers 0 )(PaternalSisters 0 )(MaternalBrothers 0 )
+(MaternalSisters 0 )(FullNephews 0 )(PaternalNephews 0 )(FullUncles 0 )
+(PaternalUncles 0 )(FullCousins 0 )(PaternalCousins 0 ))(test (>= ?y 1))(test (>= ?x 1)))
+ =>
+(printout t "Wives,12.5" crlf "Sons," (* 100 (/ (* 68 ?x) (* 48 (+ (* 2 ?x) ?y)))) crlf "Daughters," (* 100 (/ (* 34 ?y) (* 48 (+ (* 2 ?x) ?y)))) crlf "Grandfather,16.67" crlf ));
+
+;--------------------------------------------------
+;-------Wife, Daughters, Sons, Grandfather, Mother --
+;--------------------------------------------------
+(defrule rule-343 (and(dead (Husband 0 )(Wives 1 )(Sons ?x )(Daughters ?y )
+(Grandsons 0 )(Granddaughters 0 )(Grandfather 1 )(Mother 1 )
+(Father 0)(PaternalGrandmother 0 )(MaternalGrandmother 0 )(FullBrothers 0 )
+(FullSisters 0 )(PaternalBrothers 0 )(PaternalSisters 0 )(MaternalBrothers 0 )
+(MaternalSisters 0 )(FullNephews 0 )(PaternalNephews 0 )(FullUncles 0 )
+(PaternalUncles 0 )(FullCousins 0 )(PaternalCousins 0 ))(test (>= ?y 1))(test (>= ?x 1)))
+ =>
+(printout t "Wives,12.5" crlf "Sons," (* 100 (/ (* 13 ?x) (* 12 (+ (* 2 ?x) ?y)))) crlf "Daughters," (* 100 (/ (* 13 ?y) (* 24(+ (* 2 ?x) ?y)))) crlf "Grandfather,16.67" crlf "Mother,16.67" crlf ));
+
+;--------------------------------------------------
+;-------Wife, Sons, Grandfather, Mother -------------
+;--------------------------------------------------
+(defrule rule-344(and(dead (Husband 0 )(Wives 1 )(Sons ?x )(Daughters 0 )
+(Grandsons 0 )(Granddaughters 0 )(Grandfather 1 )(Mother 1 )
+(Father 0)(PaternalGrandmother 0 )(MaternalGrandmother 0 )(FullBrothers 0 )
+(FullSisters 0 )(PaternalBrothers 0 )(PaternalSisters 0 )(MaternalBrothers 0 )
+(MaternalSisters 0 )(FullNephews 0 )(PaternalNephews 0 )(FullUncles 0 )
+(PaternalUncles 0 )(FullCousins 0 )(PaternalCousins 0 ))(test (>= ?x 1)))
+ =>
+(printout t "Wives,12.5" crlf "Sons,54.17" crlf "Grandfather,16.67" crlf "Mother,16.67" crlf ));
+
+;--------------------------------------------------
+;-------Wife , Daughters , Grandfather , Mother-
+;--------------------------------------------------
+(defrule rule-345 (dead (Husband 0 )(Wives 1 )(Sons 0 )(Daughters 1 )
+(Grandsons 0 )(Granddaughters 0 )(Grandfather 1 )(Mother 1 )
+(Father 0)(PaternalGrandmother 0 )(MaternalGrandmother 0 )(FullBrothers 0 )
+(FullSisters 0 )(PaternalBrothers 0 )(PaternalSisters 0 )(MaternalBrothers 0 )
+(MaternalSisters 0 )(FullNephews 0 )(PaternalNephews 0 )(FullUncles 0 )
+(PaternalUncles 0 )(FullCousins 0 )(PaternalCousins 0 ))
+ =>
+(printout t "Wives,12.5" crlf "Daughters,50" crlf "Grandfather,20.83" crlf "Mother,16.67" crlf ));
+
+;--------------------------------------------------
+;-------Wife , Daughters (> 2), Grandfather , Mother-
+;--------------------------------------------------
+(defrule rule-351 (and(dead (Husband 0 )(Wives 1 )(Sons 0 )(Daughters ?y )
+(Grandsons 0 )(Granddaughters 0 )(Grandfather 1 )(Mother 1 )
+(Father 0)(PaternalGrandmother 0 )(MaternalGrandmother 0 )(FullBrothers 0 )
+(FullSisters 0 )(PaternalBrothers 0 )(PaternalSisters 0 )(MaternalBrothers 0 )
+(MaternalSisters 0 )(FullNephews 0 )(PaternalNephews 0 )(FullUncles 0 )
+(PaternalUncles 0 )(FullCousins 0 )(PaternalCousins 0 ))(test (>= ?y 2)))
+ =>
+(printout t "Wives,12.5" crlf "Daughters,59.26" crlf "Grandfather,14.81" crlf "Mother,14.81" crlf ));
+
+;-----------------------------------------------------------------
+;------------- Wife ,Grandfather -----------------------------------
+;-----------------------------------------------------------------
+(defrule rule-346 (dead (Husband 0 )(Wives 1 )(Sons 0 )(Daughters 0 )
+(Grandsons 0 )(Granddaughters 0 )(Grandfather 1 )(Mother 0 )
+(Father 0)(PaternalGrandmother 0 )(MaternalGrandmother 0 )(FullBrothers 0 )
+(FullSisters 0 )(PaternalBrothers 0 )(PaternalSisters 0 )(MaternalBrothers 0 )
+(MaternalSisters 0 )(FullNephews 0 )(PaternalNephews 0 )(FullUncles 0 )
+(PaternalUncles 0 )(FullCousins 0 )(PaternalCousins 0 ))
+ =>
+(printout t "Wives,25" crlf "Grandfather,75" crlf ));
+
+;-----------------------------------------------------------------
+;------------- Wife , Mother -----------------------------------
+;-----------------------------------------------------------------
+(defrule rule-347 (dead (Husband 0 )(Wives 1 )(Sons 0 )(Daughters 0 )
+(Grandsons 0 )(Granddaughters 0 )(Grandfather 0 )(Mother 1 )
+(Father 0)(PaternalGrandmother 0 )(MaternalGrandmother 0 )(FullBrothers 0 )
+(FullSisters 0 )(PaternalBrothers 0 )(PaternalSisters 0 )(MaternalBrothers 0 )
+(MaternalSisters 0 )(FullNephews 0 )(PaternalNephews 0 )(FullUncles 0 )
+(PaternalUncles 0 )(FullCousins 0 )(PaternalCousins 0 ))
+ =>
+(printout t "Wives,25" crlf "Mother,75" crlf ));
+
+;-----------------------------------------------------------------
+;------------- Wife ,Grandfather  , Mother -----------------------------------
+;-----------------------------------------------------------------
+(defrule rule-348 (dead (Husband 0 )(Wives 1 )(Sons 0 )(Daughters 0 )
+(Grandsons 0 )(Granddaughters 0 )(Grandfather 1 )(Mother 1 )
+(Father 0)(PaternalGrandmother 0 )(MaternalGrandmother 0 )(FullBrothers 0 )
+(FullSisters 0 )(PaternalBrothers 0 )(PaternalSisters 0 )(MaternalBrothers 0 )
+(MaternalSisters 0 )(FullNephews 0 )(PaternalNephews 0 )(FullUncles 0 )
+(PaternalUncles 0 )(FullCousins 0 )(PaternalCousins 0 ))
+ =>
+(printout t "Wives,25" crlf "Grandfather,50" crlf "Mother,25" crlf ));
